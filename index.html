@@ -1,0 +1,1900 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NAILA Business Evolver · <em>e</em>MPRINT</title>
+  <meta name="description" content="Asesoramiento, capacitación y diagnóstico para empresas. Economía Circular, Gestión Sostenible e Internacionalización. Conviértete en una eMPRINT." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;0,800;1,300;1,400;1,700&display=swap" rel="stylesheet" />
+
+  <style>
+  /* ─────────────────────────────────────────
+     TOKENS  (idénticos al e-commerce)
+  ───────────────────────────────────────── */
+  :root {
+    --verde:  #1A6B3C;
+    --verde2: #2D8B55;
+    --verde3: #3aad6a;
+    --carbon: #2A2926;
+    --arena:  #F5F2EC;
+    --borde:  #e5e0d6;
+    --gris:   #6b6b6b;
+    --blanco: #ffffff;
+    --radius: 10px;
+    --ff:     'Open Sans', Calibri, sans-serif;
+    --shadow: 0 8px 32px rgba(42,41,38,.10);
+    --shadow-lg: 0 20px 60px rgba(42,41,38,.18);
+
+    /* category gradients */
+    --eco-start: #fdf8ec; --eco-end: #f6dfa0;
+    --sos-start: #ecf6ef; --sos-end: #b8dec5;
+    --int-start: #eff4fa; --int-end: #bdd1e8;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { font-family: var(--ff); color: var(--carbon); background: var(--blanco); line-height: 1.65; -webkit-font-smoothing: antialiased; }
+  img { display: block; max-width: 100%; }
+  a { color: inherit; text-decoration: none; }
+
+  /* ─────────────────────────────────────────
+     eMPRINT TYPOGRAPHY  ← regla central
+     e = italic mismo tamaño que las mayúsculas
+  ───────────────────────────────────────── */
+  .emprint-word {
+    font-weight: 800;
+    font-style: normal;
+    letter-spacing: -.02em;
+  }
+  .emprint-word .e {
+    font-style: italic;
+    color: var(--verde);
+  }
+  /* versión grande para secciones hero */
+  .emprint-word-xl {
+    font-size: clamp(3rem, 8vw, 7rem);
+    font-weight: 800;
+    line-height: 1;
+    letter-spacing: -.04em;
+  }
+  .emprint-word-xl .e { font-style: italic; color: var(--verde2); }
+
+  /* ─────────────────────────────────────────
+     BOTONES
+  ───────────────────────────────────────── */
+  .btn {
+    display: inline-flex; align-items: center; gap: .45rem;
+    padding: .65rem 1.5rem; border-radius: 50px;
+    font-family: var(--ff); font-weight: 700; font-size: .88rem;
+    cursor: pointer; border: none; transition: all .2s; white-space: nowrap;
+  }
+  .btn-primary { background: var(--verde); color: #fff; }
+  .btn-primary:hover { background: var(--verde2); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(26,107,60,.35); }
+  .btn-outline { background: transparent; color: var(--verde); border: 2px solid var(--verde); }
+  .btn-outline:hover { background: var(--verde); color: #fff; transform: translateY(-2px); }
+  .btn-ghost { background: rgba(255,255,255,.12); color: #fff; border: 1.5px solid rgba(255,255,255,.3); }
+  .btn-ghost:hover { background: rgba(255,255,255,.22); border-color: rgba(255,255,255,.6); }
+  .btn-lg { padding: .85rem 2rem; font-size: 1rem; }
+
+  /* ─────────────────────────────────────────
+     LAYOUT HELPERS
+  ───────────────────────────────────────── */
+  .container { max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
+  .section-label {
+    font-size: .72rem; font-weight: 700; letter-spacing: .18em;
+    text-transform: uppercase; color: var(--verde2); margin-bottom: .6rem;
+  }
+  .section-title { font-size: clamp(1.7rem, 3.5vw, 2.4rem); font-weight: 800; line-height: 1.2; margin-bottom: .5rem; }
+  .section-sub { color: var(--gris); font-size: .95rem; max-width: 600px; }
+
+  /* scroll-reveal */
+  .reveal { opacity: 0; transform: translateY(28px); transition: opacity .65s ease, transform .65s ease; }
+  .reveal.on { opacity: 1; transform: none; }
+  .reveal-left { opacity:0; transform:translateX(-30px); transition: opacity .65s ease, transform .65s ease; }
+  .reveal-left.on { opacity:1; transform:none; }
+  .reveal-right { opacity:0; transform:translateX(30px); transition: opacity .65s ease, transform .65s ease; }
+  .reveal-right.on { opacity:1; transform:none; }
+
+  /* ─────────────────────────────────────────
+     HEADER / NAV
+  ───────────────────────────────────────── */
+  .site-header {
+    position: sticky; top: 0; z-index: 200;
+    background: var(--arena); border-bottom: 1px solid var(--borde);
+  }
+  .nav-wrap {
+    display: flex; align-items: center; gap: 1.5rem;
+    height: 68px; max-width: 1200px; margin: 0 auto; padding: 0 2rem;
+  }
+  .nav-logo { height: 38px; width: auto; flex-shrink: 0; }
+  .nav-links {
+    display: flex; align-items: center; gap: 1.8rem;
+    margin-left: auto; list-style: none;
+  }
+  .nav-links a { font-size: .88rem; font-weight: 600; color: var(--carbon); transition: color .2s; }
+  .nav-links a:hover { color: var(--verde); }
+  /* eMPRINT in nav = image, exactly like e-commerce */
+  .nav-emprint-img { height: 20px; width: auto; }
+  .nav-lang { display: flex; gap: .25rem; }
+  .nav-lang button {
+    background: none; border: none; font-family: var(--ff); font-size: .78rem;
+    font-weight: 700; color: var(--gris); cursor: pointer; padding: .2rem .4rem;
+    border-radius: 4px; transition: all .15s;
+  }
+  .nav-lang button.active { background: var(--verde); color: #fff; border-radius: 50px; padding: .2rem .6rem; }
+
+  /* ─────────────────────────────────────────
+     HERO
+  ───────────────────────────────────────── */
+  .hero {
+    background: var(--carbon);
+    color: #fff;
+    padding: 6rem 2rem 5rem;
+    position: relative; overflow: hidden;
+  }
+  .hero::after {
+    content: '';
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse 60% 80% at 80% 60%, rgba(26,107,60,.22) 0%, transparent 60%),
+      radial-gradient(ellipse 40% 50% at 10% 20%, rgba(26,107,60,.12) 0%, transparent 60%);
+    pointer-events: none;
+  }
+  .hero-grid {
+    max-width: 1200px; margin: 0 auto;
+    display: grid; grid-template-columns: 1fr 320px;
+    gap: 4rem; align-items: center;
+    position: relative; z-index: 1;
+  }
+  .hero-eyebrow {
+    display: inline-flex; align-items: center; gap: .5rem;
+    background: rgba(255,255,255,.07); border: 1px solid rgba(255,255,255,.14);
+    border-radius: 50px; padding: .3rem 1rem .3rem .6rem;
+    font-size: .78rem; font-weight: 600; color: rgba(255,255,255,.8);
+    margin-bottom: 1.5rem;
+  }
+  .hero-eyebrow .dot { width:7px; height:7px; border-radius:50%; background:var(--verde3); animation: pulse 2s infinite; }
+  @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.5;transform:scale(.8)} }
+  .hero h1 {
+    font-size: clamp(2rem, 4.5vw, 3.4rem);
+    font-weight: 800; line-height: 1.13;
+    margin-bottom: 1.4rem;
+  }
+  .hero h1 em { font-style: italic; color: var(--verde3); }
+  .hero-lead {
+    border-left: 3px solid var(--verde2); padding-left: 1.2rem;
+    font-size: 1.05rem; color: rgba(255,255,255,.78);
+    max-width: 540px; margin-bottom: 2.5rem;
+  }
+  .hero-pills {
+    display: flex; flex-wrap: wrap; gap: .75rem; margin-bottom: 2.5rem;
+  }
+  .hero-pill {
+    background: rgba(255,255,255,.07);
+    border: 1px solid rgba(255,255,255,.15);
+    border-radius: var(--radius);
+    padding: .75rem 1.2rem;
+  }
+  .hero-pill strong { display: block; font-size: .9rem; font-weight: 700; margin-bottom: .1rem; }
+  .hero-pill span { font-size: .78rem; color: rgba(255,255,255,.55); }
+  .hero-ctas { display: flex; gap: 1rem; flex-wrap: wrap; }
+
+  /* photo card */
+  .hero-photo-card {
+    position: relative;
+  }
+  .hero-photo {
+    width: 100%; aspect-ratio: 3/4; object-fit: cover;
+    object-position: center top; border-radius: 16px;
+  }
+  .hero-photo-badge {
+    position: absolute; bottom: 1rem; left: 1rem; right: 1rem;
+    background: rgba(26,107,60,.92); backdrop-filter: blur(10px);
+    border-radius: 10px; padding: 1rem;
+    color: #fff;
+  }
+  .hero-photo-badge strong { display: block; font-size: .95rem; font-weight: 700; }
+  .hero-photo-badge span { font-size: .8rem; opacity: .8; }
+
+  /* ─────────────────────────────────────────
+     QUOTE STRIP
+  ───────────────────────────────────────── */
+  .quote-strip {
+    background: var(--verde);
+    padding: 1.1rem 2rem;
+    display: flex; align-items: center; justify-content: center; gap: 1rem;
+    flex-wrap: wrap;
+  }
+  .quote-strip blockquote {
+    font-style: italic; font-size: 1rem; font-weight: 600;
+    color: #fff; letter-spacing: .01em; text-align: center;
+  }
+  .quote-strip cite { font-style: normal; font-size: .78rem; color: rgba(255,255,255,.65); }
+
+  /* ─────────────────────────────────────────
+     eMPRINT  ← SECCIÓN PROTAGONISTA
+  ───────────────────────────────────────── */
+  .emprint-hero {
+    background: var(--carbon);
+    padding: 7rem 2rem;
+    position: relative; overflow: hidden;
+  }
+  /* ── SLIM variant (when eMPRINT is at the top) ── */
+  .emprint-hero.emprint-slim {
+    padding: 3.5rem 2rem 3rem;
+  }
+  .emprint-slim .emprint-logo-big { max-height: 72px; margin: .5rem auto 1rem; }
+  .emprint-slim .emprint-tagline, .emprint-slim .emprint-sub { display: none; }
+  .emprint-slim .win-grid { display: none; }
+  .emprint-slim .emprint-become { font-size: .95rem; margin-bottom: .3rem; }
+  .emprint-slim .emprint-dna { margin-top: .8rem; gap: .5rem; }
+  .emprint-slim .emprint-dna-chip { font-size: .72rem; padding: .2rem .7rem; }
+  .emprint-slim .emprint-eyebrow { margin-bottom: .5rem; font-size: .75rem; }
+  .emprint-slim > .emprint-content > .reveal:last-of-type { margin-top: 1.2rem; }
+  .emprint-hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(circle at 50% 55%, rgba(26,107,60,.28) 0%, transparent 65%);
+    pointer-events: none;
+  }
+  /* giant background letter */
+  .emprint-bg-text {
+    position: absolute;
+    top: 50%; left: 50%; transform: translate(-50%, -50%);
+    font-size: clamp(12rem, 30vw, 22rem);
+    font-weight: 900; font-style: italic;
+    color: rgba(255,255,255,.025);
+    letter-spacing: -.05em;
+    pointer-events: none; user-select: none; white-space: nowrap;
+    line-height: 1;
+  }
+  .emprint-content {
+    max-width: 900px; margin: 0 auto;
+    display: flex; flex-direction: column; align-items: center;
+    text-align: center; position: relative; z-index: 1;
+    color: #fff;
+  }
+  .emprint-eyebrow {
+    font-size: .72rem; font-weight: 700; letter-spacing: .2em;
+    text-transform: uppercase; color: var(--verde2); margin-bottom: 1.5rem;
+  }
+  .emprint-become {
+    font-size: clamp(1.1rem, 2vw, 1.5rem);
+    font-weight: 300; letter-spacing: .04em;
+    color: rgba(255,255,255,.65);
+    margin-bottom: .6rem;
+  }
+  /* THE BIG eMPRINT LOGO */
+  .emprint-logo-big {
+    height: clamp(60px, 10vw, 100px);
+    width: auto;
+    /* invert to white for dark bg */
+    filter: brightness(0) invert(1);
+    margin: .5rem 0 1rem;
+    transition: filter .3s;
+  }
+  .emprint-logo-big:hover { filter: brightness(0) saturate(100%) invert(35%) sepia(80%) saturate(500%) hue-rotate(100deg); }
+
+  /* wordplay pills */
+  .emprint-dna {
+    display: flex; flex-wrap: wrap; justify-content: center; gap: .6rem;
+    margin: 2rem 0;
+  }
+  .emprint-dna-chip {
+    background: rgba(255,255,255,.06);
+    border: 1px solid rgba(255,255,255,.14);
+    border-radius: 50px;
+    padding: .45rem 1.1rem;
+    font-size: .85rem;
+  }
+  .emprint-dna-chip b { color: var(--verde3); font-style: italic; }
+  .emprint-tagline {
+    font-size: 1.05rem; color: rgba(255,255,255,.72);
+    max-width: 680px; line-height: 1.75; margin: 0 auto 1rem;
+  }
+  .emprint-sub {
+    font-size: .9rem; color: rgba(255,255,255,.45);
+    max-width: 600px; margin: 0 auto 2.5rem;
+    font-style: italic;
+  }
+
+  /* 3W cards below eMPRINT */
+  .win-grid {
+    display: grid; grid-template-columns: repeat(3,1fr); gap: 1px;
+    background: rgba(255,255,255,.1);
+    border: 1px solid rgba(255,255,255,.1);
+    border-radius: 14px; overflow: hidden;
+    width: 100%; max-width: 720px; margin: 3rem auto 0;
+  }
+  .win-card {
+    background: rgba(255,255,255,.04);
+    padding: 1.8rem 1.4rem; text-align: center;
+    transition: background .2s;
+  }
+  .win-card:hover { background: rgba(255,255,255,.09); }
+  .win-icon { font-size: 2rem; margin-bottom: .8rem; }
+  .win-card h4 { font-size: .95rem; font-weight: 700; color: #fff; margin-bottom: .4rem; }
+  .win-card p { font-size: .82rem; color: rgba(255,255,255,.5); line-height: 1.5; }
+
+  /* ─────────────────────────────────────────
+     FREE HOOK / AUTODIAGNÓSTICO
+  ───────────────────────────────────────── */
+  .freehook {
+    background: var(--sos-start);
+    border-bottom: 1px solid var(--borde);
+    padding: 2.5rem 2rem;
+  }
+  .freehook-inner {
+    max-width: 1200px; margin: 0 auto;
+    display: flex; align-items: center; justify-content: space-between;
+    gap: 2rem; flex-wrap: wrap;
+  }
+  .freehook-text h2 {
+    font-size: 1.3rem; font-weight: 800; color: var(--verde); margin-bottom: .25rem;
+  }
+  .freehook-text p { font-size: .88rem; color: var(--gris); }
+  .freehook-cards { display: flex; gap: .7rem; flex-wrap: wrap; }
+  .freehook-card {
+    background: #fff; border: 1px solid var(--borde);
+    border-radius: var(--radius); padding: .8rem 1rem; min-width: 175px;
+  }
+  .ftag {
+    display: inline-block; background: var(--verde); color: #fff;
+    font-weight: 800; font-size: .7rem; padding: .15rem .55rem;
+    border-radius: 4px; margin-bottom: .4rem;
+  }
+  .freehook-card strong { display: block; font-size: .85rem; margin-bottom: .1rem; }
+  .freehook-card span { font-size: .78rem; color: var(--gris); }
+
+  /* ─────────────────────────────────────────
+     SERVICES
+  ───────────────────────────────────────── */
+  .services { padding: 6rem 2rem; background: var(--blanco); }
+  .services .container { padding-bottom: 0; }
+
+  .service-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(330px,1fr));
+    gap: 1.5rem; margin-top: 3rem;
+  }
+  .service-card {
+    border-radius: 16px; padding: 2.2rem;
+    position: relative; overflow: hidden;
+    transition: transform .25s, box-shadow .25s;
+    cursor: default;
+  }
+  .service-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-lg); }
+  .sc-eco { background: linear-gradient(145deg, var(--eco-start), var(--eco-end)); }
+  .sc-sos { background: linear-gradient(145deg, var(--sos-start), var(--sos-end)); }
+  .sc-int { background: linear-gradient(145deg, var(--int-start), var(--int-end)); }
+  .service-cat-tag {
+    display: inline-block;
+    background: rgba(26,107,60,.12); color: var(--verde);
+    font-size: .68rem; font-weight: 800; letter-spacing: .12em;
+    text-transform: uppercase; padding: .2rem .7rem; border-radius: 4px;
+    margin-bottom: 1rem;
+  }
+  .service-card h3 { font-size: 1.3rem; font-weight: 800; margin-bottom: .6rem; line-height: 1.25; }
+  .service-card > p { font-size: .9rem; color: #444; line-height: 1.65; margin-bottom: 1.4rem; }
+  .service-list { list-style: none; display: flex; flex-direction: column; gap: .45rem; }
+  .service-list li {
+    font-size: .85rem; color: #555;
+    padding-left: 1.3rem; position: relative;
+  }
+  .service-list li::before {
+    content: '→'; position: absolute; left: 0;
+    color: var(--verde); font-weight: 700;
+  }
+
+  /* ─────────────────────────────────────────
+     BENEFITS / POR QUÉ ELEGIRNOS
+  ───────────────────────────────────────── */
+  .benefits { padding: 6rem 2rem; background: var(--blanco); }
+  .benefits-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    margin-top: 3rem;
+  }
+  .benefit-card {
+    background: var(--arena);
+    border: 1px solid var(--borde);
+    border-radius: 16px;
+    padding: 2rem 1.8rem;
+    position: relative;
+    transition: all .25s;
+  }
+  .benefit-card:hover { transform: translateY(-5px); box-shadow: var(--shadow); border-color: var(--verde2); }
+  .benefit-card.bc-wide { grid-column: span 3; display: grid; grid-template-columns: auto 1fr; gap: 1.5rem; align-items: center; }
+  .benefit-icon {
+    width: 52px; height: 52px; border-radius: 14px;
+    background: rgba(26,107,60,.1); color: var(--verde);
+    font-size: 1.5rem; display: flex; align-items: center; justify-content: center;
+    margin-bottom: 1rem; flex-shrink: 0;
+  }
+  .bc-wide .benefit-icon { margin-bottom: 0; }
+  .benefit-card h3 { font-size: 1rem; font-weight: 800; margin-bottom: .55rem; color: var(--carbon); }
+  .benefit-card p { font-size: .875rem; color: var(--gris); line-height: 1.7; }
+  .benefit-card .benefit-tag {
+    display: inline-block;
+    background: rgba(26,107,60,.1); color: var(--verde);
+    font-size: .65rem; font-weight: 800; letter-spacing: .1em;
+    text-transform: uppercase; padding: .18rem .65rem; border-radius: 4px;
+    margin-bottom: .8rem;
+  }
+
+  /* ─────────────────────────────────────────
+     METHODOLOGY / HOW IT WORKS
+  ───────────────────────────────────────── */
+  .how { background: var(--arena); padding: 6rem 2rem; }
+  .how-steps {
+    display: grid; grid-template-columns: repeat(4,1fr);
+    gap: 0; margin-top: 3.5rem; position: relative;
+  }
+  .how-steps::before {
+    content: '';
+    position: absolute; top: 26px; left: calc(12.5% + 26px); right: calc(12.5% + 26px);
+    height: 2px; background: linear-gradient(to right, var(--verde) 0%, var(--verde2) 100%);
+    z-index: 0;
+  }
+  .how-step { text-align: center; padding: 0 1rem; position: relative; z-index: 1; }
+  .how-num {
+    width: 52px; height: 52px; border-radius: 50%;
+    background: var(--verde); color: #fff;
+    font-size: 1.1rem; font-weight: 800;
+    display: flex; align-items: center; justify-content: center;
+    margin: 0 auto 1.2rem; position: relative; z-index: 1;
+    box-shadow: 0 0 0 6px var(--arena);
+  }
+  .how-step h4 { font-size: .95rem; font-weight: 800; margin-bottom: .4rem; }
+  .how-step p { font-size: .83rem; color: var(--gris); line-height: 1.6; }
+
+  /* ─────────────────────────────────────────
+     3D WIN / BUSINESS PHILOSOPHY
+  ───────────────────────────────────────── */
+  .philosophy {
+    background: var(--blanco); padding: 6rem 2rem;
+  }
+  .philosophy-grid {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 5rem; align-items: center; margin-top: 3rem;
+  }
+  .philosophy-text p {
+    color: var(--gris); font-size: .95rem; line-height: 1.8; margin-bottom: 1rem;
+  }
+  .philosophy-text p strong { color: var(--carbon); }
+  .philosophy-visual {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;
+  }
+  .phi-card {
+    background: var(--arena); border-radius: 14px; padding: 1.8rem 1.4rem;
+    border: 1px solid var(--borde); transition: all .2s;
+  }
+  .phi-card:hover { border-color: var(--verde2); transform: translateY(-3px); box-shadow: var(--shadow); }
+  .phi-icon { font-size: 1.8rem; margin-bottom: .7rem; }
+  .phi-card h4 { font-size: .95rem; font-weight: 700; margin-bottom: .35rem; }
+  .phi-card p { font-size: .82rem; color: var(--gris); line-height: 1.55; }
+  .phi-card.full { grid-column: 1/-1; }
+
+  /* ─────────────────────────────────────────
+     SECTORS
+  ───────────────────────────────────────── */
+  .sectors { padding: 5rem 2rem; background: var(--arena); }
+  .sectors-tags {
+    display: flex; flex-wrap: wrap; gap: .55rem; margin-top: 2rem;
+  }
+  .stag {
+    background: var(--blanco); border: 1px solid var(--borde);
+    border-radius: 50px; padding: .4rem 1.1rem;
+    font-size: .83rem; color: var(--carbon);
+    transition: all .2s; cursor: default;
+  }
+  .stag:hover { background: var(--verde); color: #fff; border-color: var(--verde); transform: translateY(-2px); }
+
+  /* ─────────────────────────────────────────
+     CLIENTS — infinite scroll marquee
+  ───────────────────────────────────────── */
+  .clients { padding: 5rem 2rem; background: var(--blanco); }
+  .marquee-wrap {
+    margin-top: 2.5rem; overflow: hidden;
+    -webkit-mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
+    mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
+  }
+  .marquee-track {
+    display: flex; gap: 3rem; align-items: center;
+    animation: marquee 40s linear infinite;
+    width: max-content;
+  }
+  .marquee-track:hover { animation-play-state: paused; }
+  @keyframes marquee {
+    from { transform: translateX(0); }
+    to   { transform: translateX(-50%); }
+  }
+  .client-img {
+    height: 40px; width: auto; max-width: 130px;
+    object-fit: contain; flex-shrink: 0;
+    filter: grayscale(1) opacity(.55);
+    transition: filter .3s;
+  }
+  .client-img:hover { filter: grayscale(0) opacity(1); }
+
+  /* ─────────────────────────────────────────
+     CERTIFICATIONS
+  ───────────────────────────────────────── */
+  .certs {
+    background: var(--carbon); padding: 5rem 2rem;
+    color: #fff;
+  }
+  .certs-grid {
+    display: grid; grid-template-columns: repeat(4,1fr);
+    gap: 1.5rem; margin-top: 3rem;
+  }
+  .cert-card {
+    background: rgba(255,255,255,.06);
+    border: 1px solid rgba(255,255,255,.12);
+    border-radius: 14px; padding: 2rem 1.5rem;
+    text-align: center; transition: all .2s;
+    display: flex; flex-direction: column; align-items: center; gap: 1rem;
+  }
+  .cert-card:hover { background: rgba(255,255,255,.12); transform: translateY(-4px); }
+  .cert-img { height: 56px; width: auto; max-width: 160px; object-fit: contain; filter: brightness(0) invert(1) opacity(.85); }
+  .cert-card p { font-size: .82rem; color: rgba(255,255,255,.55); line-height: 1.5; }
+
+  /* ─────────────────────────────────────────
+     ODS SECTION
+  ───────────────────────────────────────── */
+  .ods-section { background: var(--arena); padding: 6rem 2rem; }
+  .ods-grid {
+    display: grid; grid-template-columns: 1fr 300px;
+    gap: 4rem; align-items: center; margin-top: 3rem;
+  }
+  .ods-badges { display: flex; flex-wrap: wrap; gap: .5rem; margin-top: 1.5rem; }
+  .ods-badge {
+    background: var(--verde); color: #fff;
+    font-size: .78rem; font-weight: 700;
+    padding: .3rem .8rem; border-radius: 6px;
+  }
+  .ods-img { width: 100%; border-radius: 12px; box-shadow: var(--shadow); }
+
+  /* ─────────────────────────────────────────
+     NOELIA / FOUNDER SECTION
+  ───────────────────────────────────────── */
+  .founder {
+    background: var(--blanco); padding: 6rem 2rem;
+  }
+  .founder-grid {
+    display: grid; grid-template-columns: 380px 1fr;
+    gap: 4rem; align-items: center; margin-top: 0;
+  }
+  .founder-photo-wrap { position: relative; }
+  .founder-photo {
+    width: 100%; border-radius: 20px;
+    aspect-ratio: 4/5; object-fit: cover; object-position: center top;
+    box-shadow: var(--shadow-lg);
+  }
+  .founder-photo-alt {
+    width: 100%; border-radius: 20px;
+    aspect-ratio: 1/1; object-fit: cover; object-position: center top;
+    box-shadow: var(--shadow-lg);
+  }
+  .founder-badge {
+    position: absolute; bottom: 1.5rem; right: -1.5rem;
+    background: var(--verde); color: #fff;
+    border-radius: 12px; padding: 1rem 1.4rem;
+    box-shadow: var(--shadow-lg);
+  }
+  .founder-badge strong { display: block; font-size: 1.8rem; font-weight: 800; line-height: 1; }
+  .founder-badge span { font-size: .78rem; opacity: .8; }
+  .founder-text h2 { font-size: clamp(1.6rem, 3vw, 2.2rem); font-weight: 800; margin-bottom: 1rem; }
+  .founder-text p { color: var(--gris); font-size: .95rem; line-height: 1.8; margin-bottom: 1rem; }
+  .founder-text blockquote {
+    border-left: 3px solid var(--verde);
+    padding-left: 1.2rem; margin: 1.5rem 0;
+    font-style: italic; font-size: 1.05rem; color: var(--carbon); font-weight: 600;
+  }
+
+  /* ─────────────────────────────────────────
+     CONTACT
+  ───────────────────────────────────────── */
+  .contact { background: var(--arena); padding: 6rem 2rem; }
+  .contact-grid {
+    display: grid; grid-template-columns: 1fr 1.1fr;
+    gap: 4rem; align-items: start; margin-top: 3rem;
+  }
+  .contact-info h2 { font-size: 2rem; font-weight: 800; margin-bottom: .5rem; }
+  .contact-info .lead { color: var(--gris); font-size: .95rem; margin-bottom: 2rem; }
+  .contact-details { display: flex; flex-direction: column; gap: 1.2rem; }
+  .contact-row { display: flex; gap: 1rem; align-items: flex-start; }
+  .contact-icon {
+    width: 40px; height: 40px; background: var(--verde); color: #fff;
+    border-radius: 10px; display: flex; align-items: center; justify-content: center;
+    font-size: 1rem; flex-shrink: 0;
+  }
+  .contact-row strong { display: block; font-size: .88rem; font-weight: 700; margin-bottom: .1rem; }
+  .contact-row span { font-size: .85rem; color: var(--gris); }
+  .contact-avail {
+    background: #fff; border: 1px solid var(--borde); border-radius: var(--radius);
+    padding: 1.2rem 1.4rem; margin-top: 1.5rem;
+  }
+  .contact-avail strong { color: var(--verde); font-size: .88rem; display: block; margin-bottom: .4rem; }
+  .contact-avail p { font-size: .83rem; color: var(--gris); line-height: 1.6; }
+
+  .contact-form {
+    background: #fff; border-radius: 18px;
+    padding: 2.5rem; box-shadow: var(--shadow-lg);
+  }
+  .contact-form h3 { font-size: 1.2rem; font-weight: 800; margin-bottom: 1.5rem; }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+  .fg { display: flex; flex-direction: column; gap: .35rem; margin-bottom: 1rem; }
+  .fg label { font-size: .72rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--gris); }
+  .fg input, .fg select, .fg textarea {
+    border: 1.5px solid var(--borde); border-radius: 8px;
+    padding: .65rem .95rem; font-family: var(--ff); font-size: .9rem;
+    color: var(--carbon); outline: none; transition: border-color .2s; background: var(--arena);
+  }
+  .fg input:focus, .fg select:focus, .fg textarea:focus { border-color: var(--verde); background: #fff; }
+  .fg textarea { resize: vertical; min-height: 90px; }
+  .form-security {
+    font-size: .75rem; color: var(--gris); margin-bottom: 1.2rem;
+    display: flex; gap: 1rem; flex-wrap: wrap;
+  }
+
+  /* ─────────────────────────────────────────
+     FOOTER
+  ───────────────────────────────────────── */
+  footer {
+    background: var(--carbon); color: rgba(255,255,255,.65);
+    padding: 4rem 2rem 2rem;
+  }
+  .footer-grid {
+    max-width: 1200px; margin: 0 auto;
+    display: grid; grid-template-columns: 2.2fr 1fr 1fr 1fr;
+    gap: 3rem; padding-bottom: 3rem;
+    border-bottom: 1px solid rgba(255,255,255,.08);
+  }
+  .footer-brand .footer-logo {
+    height: 36px; width: auto; margin-bottom: 1rem;
+    filter: brightness(0) invert(1);
+  }
+  .footer-brand p { font-size: .85rem; line-height: 1.7; margin-bottom: 1rem; }
+  .footer-quote {
+    border-left: 2px solid var(--verde2); padding-left: .9rem;
+    font-style: italic; font-size: .82rem; color: rgba(255,255,255,.4);
+    margin: 1rem 0;
+  }
+  .footer-social { display: flex; gap: .7rem; margin-top: 1rem; }
+  .footer-social a {
+    width: 36px; height: 36px; border-radius: 8px;
+    background: rgba(255,255,255,.08); color: rgba(255,255,255,.65);
+    display: flex; align-items: center; justify-content: center;
+    font-size: .85rem; transition: all .2s;
+  }
+  .footer-social a:hover { background: var(--verde); color: #fff; }
+  footer h5 {
+    font-size: .72rem; font-weight: 800; letter-spacing: .14em;
+    text-transform: uppercase; color: #fff; margin-bottom: 1.2rem;
+  }
+  footer ul { list-style: none; display: flex; flex-direction: column; gap: .6rem; }
+  footer ul a { font-size: .85rem; color: rgba(255,255,255,.55); transition: color .2s; }
+  footer ul a:hover { color: var(--verde2); }
+  .footer-bottom {
+    max-width: 1200px; margin: 1.5rem auto 0;
+    display: flex; justify-content: space-between; align-items: center;
+    font-size: .78rem; color: rgba(255,255,255,.3);
+    flex-wrap: wrap; gap: .5rem;
+  }
+  .footer-bottom a { color: rgba(255,255,255,.3); transition: color .2s; }
+  .footer-bottom a:hover { color: rgba(255,255,255,.7); }
+  .footer-security { display: flex; gap: 1rem; align-items: center; }
+
+  /* ─────────────────────────────────────────
+     RESPONSIVE
+  ───────────────────────────────────────── */
+  /* ─────────────────────────────────────────
+     BLOG SECTION
+  ───────────────────────────────────────── */
+  .blog-section { padding: 6rem 2rem; background: var(--blanco); }
+
+  /* Bio card */
+  .blog-bio {
+    display: grid; grid-template-columns: 260px 1fr;
+    gap: 3.5rem; align-items: start;
+    background: var(--arena); border: 1px solid var(--borde);
+    border-radius: 20px; padding: 2.5rem;
+    margin-bottom: 4rem;
+  }
+  .blog-bio-photo img {
+    width: 100%; aspect-ratio: 3/4; object-fit: cover;
+    border-radius: 14px;
+  }
+  .blog-bio-text h2 { font-size: clamp(1.3rem,2.5vw,1.8rem); font-weight: 800; margin-bottom: .8rem; }
+  .blog-bio-text p { color: var(--gris); font-size: .93rem; line-height: 1.8; margin-bottom: .8rem; }
+  .blog-bio-tags { display: flex; flex-wrap: wrap; gap: .45rem; margin-top: 1rem; }
+
+  /* Article grid */
+  .blog-grid {
+    display: grid; grid-template-columns: repeat(3,1fr);
+    gap: 1.5rem; margin-top: 2.5rem;
+  }
+  .blog-card {
+    background: var(--arena); border: 1px solid var(--borde);
+    border-radius: 16px; padding: 2rem 1.8rem;
+    display: flex; flex-direction: column; gap: .8rem;
+    transition: all .25s;
+  }
+  .blog-card:hover { transform: translateY(-4px); box-shadow: var(--shadow); border-color: var(--verde2); }
+  .blog-card-cat {
+    display: inline-block; font-size: .65rem; font-weight: 800;
+    letter-spacing: .1em; text-transform: uppercase;
+    padding: .2rem .75rem; border-radius: 4px; width: fit-content;
+  }
+  .blog-cat-ec  { background: var(--eco-end);  color: #7a5c00; }
+  .blog-cat-gs  { background: var(--sos-end);  color: #1a5c30; }
+  .blog-cat-int { background: var(--int-end);  color: #1a3c6b; }
+  .blog-card h3 { font-size: 1rem; font-weight: 800; line-height: 1.35; color: var(--carbon); }
+  .blog-card p  { font-size: .85rem; color: var(--gris); line-height: 1.7; flex: 1; }
+  .blog-card-meta {
+    display: flex; justify-content: space-between; align-items: center;
+    margin-top: .5rem; padding-top: 1rem;
+    border-top: 1px solid var(--borde);
+    font-size: .78rem; color: var(--gris);
+  }
+  .blog-card-meta span:last-child { color: var(--verde); font-weight: 700; cursor: pointer; }
+
+  @media (max-width: 1024px) {
+    .how-steps::before { display: none; }
+    .how-steps { grid-template-columns: repeat(2,1fr); gap: 2rem; }
+    .certs-grid { grid-template-columns: repeat(2,1fr); }
+    .footer-grid { grid-template-columns: 1fr 1fr; }
+    .benefits-grid { grid-template-columns: repeat(2,1fr); }
+    .benefit-card.bc-wide { grid-column: span 2; }
+    .blog-grid { grid-template-columns: repeat(2,1fr); }
+    .blog-bio { grid-template-columns: 180px 1fr; gap: 2rem; }
+  }
+  @media (max-width: 768px) {
+    .hero-grid { grid-template-columns: 1fr; }
+    .hero-photo-card { display: none; }
+    .philosophy-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+    .founder-grid { grid-template-columns: 1fr; }
+    .founder-badge { right: 1rem; }
+    .contact-grid { grid-template-columns: 1fr; }
+    .ods-grid { grid-template-columns: 1fr; }
+    .ods-img { display: none; }
+    .win-grid { grid-template-columns: 1fr; }
+    .form-row { grid-template-columns: 1fr; }
+    .benefits-grid { grid-template-columns: 1fr; }
+    .benefit-card.bc-wide { grid-column: span 1; grid-template-columns: 1fr; }
+    .bc-wide .benefit-icon { margin-bottom: .8rem; }
+    .blog-grid { grid-template-columns: 1fr; }
+    .blog-bio { grid-template-columns: 1fr; }
+    .blog-bio-photo img { aspect-ratio: 16/9; object-position: center top; }
+  }
+  @media (max-width: 560px) {
+    .nav-links { gap: 1rem; }
+    .how-steps { grid-template-columns: 1fr; }
+    .footer-grid { grid-template-columns: 1fr; }
+    .certs-grid { grid-template-columns: 1fr 1fr; }
+  }
+
+  /* ─────────────────────────────────────────
+     MODALES (Noelia bio + eMPRINT detalle)
+  ───────────────────────────────────────── */
+  .modal-overlay {
+    display: none; position: fixed; inset: 0; z-index: 1000;
+    background: rgba(42,41,38,.75); backdrop-filter: blur(6px);
+    align-items: flex-start; justify-content: center;
+    padding: 2rem 1rem; overflow-y: auto;
+  }
+  .modal-overlay.open { display: flex; }
+  .modal-box {
+    background: var(--blanco); border-radius: 18px;
+    max-width: 860px; width: 100%; margin: auto;
+    box-shadow: 0 30px 80px rgba(42,41,38,.28);
+    overflow: hidden; position: relative;
+    animation: modalIn .3s ease;
+  }
+  @keyframes modalIn { from { opacity:0; transform:translateY(28px); } to { opacity:1; transform:none; } }
+  .modal-close {
+    position: absolute; top: 1rem; right: 1rem;
+    background: rgba(255,255,255,.15); border: 1px solid rgba(255,255,255,.2); border-radius: 50%;
+    width: 36px; height: 36px; font-size: 1.1rem; cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    color: #fff; transition: background .2s; z-index: 10;
+  }
+  .modal-close:hover { background: rgba(255,255,255,.3); }
+
+  /* Noelia modal */
+  .modal-noelia-header {
+    background: var(--carbon);
+    padding: 2.5rem 3rem 0;
+    display: grid; grid-template-columns: 190px 1fr; gap: 2.5rem; align-items: end;
+  }
+  .modal-noelia-header img {
+    width: 190px; height: 230px; object-fit: cover; object-position: top center;
+    border-radius: 12px 12px 0 0; display: block;
+  }
+  .modal-noelia-meta { color: #fff; padding-bottom: 2rem; }
+  .modal-noelia-meta .role { color: var(--verde3); font-size: .78rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; margin-bottom: .5rem; }
+  .modal-noelia-meta h2 { font-size: clamp(1.4rem,3vw,1.9rem); font-weight: 800; margin-bottom: .5rem; }
+  .modal-noelia-meta .tagline { color: rgba(255,255,255,.65); font-size: .9rem; line-height: 1.6; }
+  .modal-noelia-body { padding: 2.5rem 3rem; }
+  .modal-noelia-body p { margin-bottom: 1rem; color: var(--carbon); line-height: 1.8; font-size: .95rem; }
+  .modal-noelia-body blockquote {
+    border-left: 3px solid var(--verde2); padding-left: 1.2rem;
+    font-style: italic; color: var(--gris); margin: 1.5rem 0; font-size: .95rem;
+  }
+  .modal-tags { display: flex; flex-wrap: wrap; gap: .5rem; margin: 1.5rem 0; }
+  .modal-ctas { display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 2rem; padding-top: 1.5rem; border-top: 1px solid var(--borde); }
+
+  /* eMPRINT modal */
+  .modal-emprint-header {
+    background: var(--carbon); padding: 3rem 3rem 2.5rem;
+    text-align: center; color: #fff; position: relative; overflow: hidden;
+  }
+  .modal-emprint-header::before {
+    content: 'eMPRINT'; position: absolute; top: 50%; left: 50%;
+    transform: translate(-50%,-50%); font-size: 8rem; font-weight: 900;
+    color: rgba(255,255,255,.04); letter-spacing: -.05em; white-space: nowrap; pointer-events: none;
+  }
+  .modal-emprint-header img { height: 56px; filter: brightness(0) invert(1); margin: 0 auto 1rem; }
+  .modal-emprint-header p { color: rgba(255,255,255,.65); max-width: 580px; margin: 0 auto; font-size: .95rem; line-height: 1.7; }
+  .modal-emprint-body { padding: 2.5rem 3rem; }
+  .modal-emprint-body h3 { font-size: 1.05rem; font-weight: 800; margin: 2rem 0 .8rem; color: var(--carbon); }
+  .emprint-pillars { display: grid; grid-template-columns: repeat(3,1fr); gap: 1rem; margin: 1.5rem 0; }
+  .emprint-pillar {
+    padding: 1.5rem 1rem; border-radius: 12px; text-align: center; border: 1px solid var(--borde);
+  }
+  .emprint-pillar .pi { font-size: 2rem; margin-bottom: .5rem; }
+  .emprint-pillar h4 { font-size: .85rem; font-weight: 700; color: var(--carbon); margin-bottom: .25rem; }
+  .emprint-pillar p { font-size: .78rem; color: var(--gris); }
+  .ep-eco { background: var(--eco-start); border-color: var(--eco-end); }
+  .ep-sos { background: var(--sos-start); border-color: var(--sos-end); }
+  .ep-int { background: var(--int-start); border-color: var(--int-end); }
+  .emprint-steps { display: flex; flex-direction: column; gap: 1rem; margin: 1.5rem 0; }
+  .emprint-step {
+    display: grid; grid-template-columns: 40px 1fr; gap: 1rem; align-items: start;
+    padding: 1rem 1.2rem; border: 1px solid var(--borde); border-radius: 12px; background: var(--arena);
+  }
+  .emprint-step-num {
+    width: 40px; height: 40px; border-radius: 50%; background: var(--verde);
+    color: #fff; font-weight: 800; font-size: 1rem;
+    display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+  }
+  .emprint-step h4 { font-weight: 700; font-size: .9rem; margin-bottom: .2rem; color: var(--carbon); }
+  .emprint-step p { font-size: .82rem; color: var(--gris); margin: 0; }
+  .emprint-what-get {
+    display: grid; grid-template-columns: repeat(2,1fr); gap: .8rem; margin: 1.5rem 0;
+  }
+  .ewg-item {
+    display: flex; align-items: flex-start; gap: .7rem;
+    padding: .9rem 1rem; background: var(--arena); border-radius: 10px; border: 1px solid var(--borde);
+  }
+  .ewg-item .ewg-icon { font-size: 1.2rem; flex-shrink: 0; margin-top: .1rem; }
+  .ewg-item p { font-size: .82rem; color: var(--carbon); margin: 0; line-height: 1.5; }
+  .ewg-item strong { display: block; font-size: .85rem; margin-bottom: .15rem; }
+
+  /* WIN-WIN-WIN mejorado */
+  .win3-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.5rem; margin-top: 3rem; }
+  .win3-card {
+    border-radius: 16px; padding: 2rem 1.5rem; text-align: center; border: 1px solid var(--borde);
+  }
+  .win3-icon { font-size: 2.8rem; margin-bottom: .8rem; display: block; }
+  .win3-card h3 { font-size: 1.1rem; font-weight: 800; margin-bottom: .3rem; color: var(--carbon); }
+  .win3-card .win3-who { font-size: .68rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--verde2); margin-bottom: .8rem; }
+  .win3-card p { font-size: .85rem; color: var(--gris); line-height: 1.65; }
+  .win3-planet { background: linear-gradient(135deg,#ecf8ef,#d0eed8); border-color: #b3deba; }
+  .win3-people { background: linear-gradient(135deg,#f0f4fb,#d8e5f5); border-color: #b8cfe8; }
+  .win3-biz { background: linear-gradient(135deg,#fdf8ec,#f5e8b8); border-color: #e8d28a; }
+
+  /* Blog CTA strip */
+  .blog-cta-strip {
+    background: var(--arena); border: 1px solid var(--borde); border-radius: 16px;
+    padding: 2rem 2.5rem; display: flex; align-items: center; gap: 2rem; flex-wrap: wrap;
+    margin-bottom: 3rem;
+  }
+  .blog-cta-photo {
+    width: 80px; height: 80px; border-radius: 50%; object-fit: cover; object-position: top center;
+    border: 3px solid var(--verde2); flex-shrink: 0;
+  }
+  .blog-cta-text { flex: 1; min-width: 200px; }
+  .blog-cta-text h3 { font-size: 1rem; font-weight: 700; margin-bottom: .25rem; color: var(--carbon); }
+  .blog-cta-text p { font-size: .87rem; color: var(--gris); }
+
+  @media (max-width: 768px) {
+    .modal-noelia-header { grid-template-columns: 1fr; padding: 1.5rem 1.5rem 0; }
+    .modal-noelia-header img { width: 100%; height: 180px; border-radius: 12px 12px 0 0; }
+    .modal-noelia-body, .modal-emprint-body { padding: 1.5rem; }
+    .modal-emprint-header { padding: 1.5rem; }
+    .emprint-pillars { grid-template-columns: 1fr; }
+    .emprint-what-get { grid-template-columns: 1fr; }
+    .win3-grid { grid-template-columns: 1fr; }
+  }
+  </style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════
+     HEADER
+════════════════════════════════════════════ -->
+<header class="site-header">
+  <div class="nav-wrap">
+    <a href="#">
+      <img src="img/naila-logo-color-hq.png" alt="NAILA Business Evolver" class="nav-logo" />
+    </a>
+    <ul class="nav-links">
+      <li><a href="#servicios">Servicios</a></li>
+      <li><a href="#clientes">ONGs</a></li>
+      <li><a href="#contacto">Agenda</a></li>
+      <li>
+        <a href="#emprint">
+          <img src="img/logo-emprint.png" alt="eMPRINT" class="nav-emprint-img" />
+        </a>
+      </li>
+    </ul>
+    <div class="nav-lang">
+      <button class="active">ES</button>
+      <button>EN</button>
+      <button>DA</button>
+    </div>
+    <a href="#contacto" class="btn btn-primary" style="margin-left:.5rem;">Contáctanos</a>
+  </div>
+</header>
+
+<!-- ═══════════════════════════════════════════
+     eMPRINT — SLIM (FIRST VISIBLE SECTION)
+════════════════════════════════════════════ -->
+<section class="emprint-hero emprint-slim" id="emprint">
+  <div class="emprint-bg-text" aria-hidden="true">eMPRINT</div>
+  <div class="emprint-content">
+    <p class="emprint-eyebrow reveal" data-i18n="emprint.eyebrow">El camino hacia la transformación integral</p>
+    <p class="emprint-become reveal" data-i18n="emprint.become">Conviértete en una</p>
+    <img
+      src="img/logo-emprint.png"
+      alt="eMPRINT"
+      class="emprint-logo-big reveal"
+    />
+    <div class="emprint-dna reveal">
+      <div class="emprint-dna-chip"><b>e·</b> <span data-i18n="emprint.e">electrónico / digital</span></div>
+      <div class="emprint-dna-chip"><b>empr·</b> <span data-i18n="emprint.empr">empresa</span></div>
+      <div class="emprint-dna-chip"><b>·print·</b> <span data-i18n="emprint.print">huella que dejamos</span></div>
+      <div class="emprint-dna-chip"><b>·INT</b> <span data-i18n="emprint.int">internacional</span></div>
+    </div>
+    <div class="reveal" style="display:flex; gap:1rem; flex-wrap:wrap; justify-content:center;">
+      <a href="#contacto" class="btn btn-primary btn-lg" data-i18n="emprint.cta">Consulta presupuesto personalizado</a>
+      <button onclick="document.getElementById('modal-emprint').classList.add('open')" class="btn btn-ghost btn-lg" data-i18n="emprint.more">¿Qué es eMPRINT? →</button>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     HERO
+════════════════════════════════════════════ -->
+<section class="hero">
+  <div class="hero-grid container">
+    <div class="hero-content">
+      <div class="hero-eyebrow reveal">
+        <span class="dot"></span>
+        <span data-i18n="hero.location">Las Palmas de Gran Canaria · España &amp; Internacional</span>
+      </div>
+      <h1 class="reveal">
+        <span data-i18n="hero.title">Asesoramiento estratégico</span>
+        <em data-i18n="hero.title2">a medida para tu empresa</em>
+      </h1>
+      <p class="hero-lead reveal">
+        <span data-i18n="hero.lead">Con <strong>sesiones personalizadas</strong> te guiamos hacia la sostenibilidad y ayudamos a tu empresa a alcanzar su máximo potencial. Diagnósticos, asesoramiento y capacitación en <strong>3 líneas de negocio</strong>.</span>
+      </p>
+      <div class="hero-pills reveal">
+        <div class="hero-pill">
+          <strong data-i18n="hero.pill1">Economía Circular</strong>
+          <span data-i18n="hero.pill1sub">Análisis integral</span>
+        </div>
+        <div class="hero-pill">
+          <strong data-i18n="hero.pill2">Gestión Sostenible</strong>
+          <span data-i18n="hero.pill2sub">Plan a medida</span>
+        </div>
+        <div class="hero-pill">
+          <strong data-i18n="hero.pill3">Internacionalización</strong>
+          <span data-i18n="hero.pill3sub">Talleres y formación</span>
+        </div>
+      </div>
+      <div class="hero-ctas reveal">
+        <a href="#servicios" class="btn btn-primary btn-lg" data-i18n="hero.cta1">Ver servicios</a>
+        <a href="#emprint" class="btn btn-ghost btn-lg">
+          <span data-i18n="hero.cta2">Conviértete en una</span> <span class="emprint-word" style="margin-left:.3rem;"><span class="e">e</span>MPRINT</span>
+        </a>
+      </div>
+    </div>
+    <div class="hero-photo-card reveal-right">
+      <img src="img/noelia-2026.jpg" alt="Noelia Pericón, fundadora de NAILA Business Evolver" class="hero-photo" style="transform:scaleX(-1)" />
+      <div class="hero-photo-badge">
+        <strong>Noelia Pericón</strong>
+        <span data-i18n="hero.badge">Fundadora de beNaila</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- QUOTE STRIP -->
+<div class="quote-strip">
+  <blockquote data-i18n="quote.text">"Si ganan las personas y gana el entorno, ganamos las empresas"</blockquote>
+  <cite data-i18n="quote.author">— Noelia Pericón, fundadora de beNaila</cite>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     AUTODIAGNÓSTICO GRATIS
+════════════════════════════════════════════ -->
+<div class="freehook">
+  <div class="freehook-inner reveal">
+    <div class="freehook-text">
+      <h2>Comienza gratis · Autodiagnóstico</h2>
+      <p>Evalúa tu empresa en 10 minutos. Descubre tus verdaderos objetivos y oportunidades de mejora alineadas con la Agenda 2030.</p>
+    </div>
+    <div class="freehook-cards">
+      <div class="freehook-card">
+        <span class="ftag">EC</span>
+        <strong>Economía Circular</strong>
+        <span>25 preguntas · 0 €</span>
+      </div>
+      <div class="freehook-card">
+        <span class="ftag">GS</span>
+        <strong>Gestión Sostenible</strong>
+        <span>25 preguntas · 0 €</span>
+      </div>
+      <div class="freehook-card">
+        <span class="ftag">IN</span>
+        <strong>Internacionalización</strong>
+        <span>25 preguntas · 0 €</span>
+      </div>
+    </div>
+    <a href="https://benaila-final.vercel.app" class="btn btn-primary" target="_blank">Elige tu área →</a>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     BENEFITS / POR QUÉ ELEGIRNOS
+════════════════════════════════════════════ -->
+<section class="benefits" id="beneficios-sec">
+  <div class="container">
+    <div class="reveal">
+      <p class="section-label">Por qué elegirnos</p>
+      <h2 class="section-title">Lo que nos diferencia</h2>
+      <p class="section-sub">Nos enfocamos exclusivamente en lo que tu empresa necesita, garantizando resultados reales alineados con los estándares internacionales.</p>
+    </div>
+    <div class="benefits-grid">
+
+      <div class="benefit-card reveal">
+        <div class="benefit-icon">🎯</div>
+        <span class="benefit-tag">Consultoría estratégica</span>
+        <h3>Enfoque 100% personalizado</h3>
+        <p>Nos centramos exclusivamente en lo que necesitas. Con nuestra metodología identificamos fácilmente cómo ayudarte y alinear tu empresa con los estándares internacionales más utilizados — tu éxito está garantizado.</p>
+      </div>
+
+      <div class="benefit-card reveal" style="transition-delay:.08s">
+        <div class="benefit-icon">✅</div>
+        <span class="benefit-tag">Metodología probada</span>
+        <h3>Resultados garantizados</h3>
+        <p>Una metodología clara, adaptada a tu tiempo y recursos, que hace fácil identificar cómo mejorar y alinear tu empresa con los marcos internacionales de sostenibilidad e internacionalización.</p>
+      </div>
+
+      <div class="benefit-card reveal" style="transition-delay:.16s">
+        <div class="benefit-icon">🏅</div>
+        <span class="benefit-tag">Experta certificada</span>
+        <h3>Certificaciones sin grandes gastos</h3>
+        <p>Las PYMEs tienen derecho a certificarse sin grandes cambios ni inversiones. Certificada por <strong>GRI</strong> con años de experiencia en gestión sostenible internacional, te ayudamos a conseguirlo.</p>
+      </div>
+
+      <div class="benefit-card reveal" style="transition-delay:.24s">
+        <div class="benefit-icon">🌍</div>
+        <span class="benefit-tag">Flexible y conveniente</span>
+        <h3>Adaptado a cada empresa</h3>
+        <p>Planes flexibles y convenientes que se adaptan a las necesidades diversas de cada empresa, ofreciendo un servicio excepcional tanto presencial como online.</p>
+      </div>
+
+      <div class="benefit-card reveal" style="transition-delay:.32s">
+        <div class="benefit-icon">💶</div>
+        <span class="benefit-tag">Tarifa accesible</span>
+        <h3>Sin grandes inversiones iniciales</h3>
+        <p>Adaptamos soluciones y precios a los requisitos únicos de cada empresa, asegurando el máximo valor y satisfacción. Si no encuentras lo que buscas, contáctanos.</p>
+      </div>
+
+      <!-- Noelia's personal proposal — wide card -->
+      <div class="benefit-card bc-wide reveal" style="transition-delay:.4s; background: linear-gradient(135deg, #ecf6ef, #d0edda); border-color: var(--verde2);">
+        <div class="benefit-icon" style="background: rgba(26,107,60,.15);">🤝</div>
+        <div>
+          <span class="benefit-tag">Sesiones individuales</span>
+          <h3>Coaching ejecutivo &amp; consultoría a medida</h3>
+          <p>Con sesiones personalizadas 1 a 1 te guiamos hacia la sostenibilidad y ayudamos a tu empresa a alcanzar su máximo potencial. Noelia trabaja directamente contigo para diseñar una hoja de ruta real, alineada con tus objetivos y recursos.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     SERVICES
+════════════════════════════════════════════ -->
+<section class="services" id="servicios">
+  <div class="container">
+    <div class="reveal">
+      <p class="section-label">Lo que ofrecemos</p>
+      <h2 class="section-title">Nuestros servicios</h2>
+      <p class="section-sub">Diagnósticos, asesoramiento y capacitación en tres líneas de negocio.</p>
+    </div>
+    <div class="service-grid">
+
+      <div class="service-card sc-eco reveal">
+        <span class="service-cat-tag">Economía Circular</span>
+        <h3>Reduce, reutiliza y regenera</h3>
+        <p>Diagnóstico y plan de ruta para transformar tu modelo de negocio hacia la circularidad, apoyado en los estándares internacionales más reconocidos.</p>
+        <ul class="service-list">
+          <li>Autodiagnóstico circular básico (gratis)</li>
+          <li>Cuestionario circular medio + informe</li>
+          <li>Diagnóstico circular avanzado + hoja de ruta 12 meses</li>
+          <li>Proyecto circular continuado</li>
+          <li>Taller / Formación en economía circular</li>
+          <li>Memorias e informes de sostenibilidad (GRI)</li>
+        </ul>
+      </div>
+
+      <div class="service-card sc-sos reveal" style="transition-delay:.1s">
+        <span class="service-cat-tag">Gestión Sostenible</span>
+        <h3>Implementa prácticas sostenibles</h3>
+        <p>Integra la sostenibilidad de forma medible en tu estrategia. Nuestra metodología se adapta a tu tiempo y recursos, garantizando resultados reales.</p>
+        <ul class="service-list">
+          <li>Diagnóstico de sostenibilidad</li>
+          <li>Plan de sostenibilidad personalizado</li>
+          <li>Gestión del cambio organizacional</li>
+          <li>Capacitación de equipos internos</li>
+          <li>Certificaciones y reconocimientos</li>
+          <li>Documentación útil y reportes de impacto</li>
+        </ul>
+      </div>
+
+      <div class="service-card sc-int reveal" style="transition-delay:.2s">
+        <span class="service-cat-tag">Internacionalización</span>
+        <h3>Expande tu empresa al mundo</h3>
+        <p>Acceso a fondos europeos, mercados internacionales y redes de cooperación global. Experiencia directa con organismos y proyectos internacionales.</p>
+        <ul class="service-list">
+          <li>Diagnóstico de internacionalización</li>
+          <li>Acceso a fondos UE e Interreg</li>
+          <li>Talleres de cooperación internacional</li>
+          <li>Sesiones para ONGs (fondos UE) — gratuito</li>
+          <li>Consulta estratégica de expansión</li>
+          <li>Red de contactos internacionales</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     METHODOLOGY
+════════════════════════════════════════════ -->
+<section class="how">
+  <div class="container">
+    <div class="reveal">
+      <p class="section-label">Nuestra metodología</p>
+      <h2 class="section-title">Adaptada a tu tiempo y tus recursos</h2>
+      <p class="section-sub">Guaranteed success — nuestra metodología hace fácil identificar cómo ayudarte y alinear tu empresa con los estándares internacionales.</p>
+    </div>
+    <div class="how-steps">
+      <div class="how-step reveal">
+        <div class="how-num">1</div>
+        <h4>Análisis detallado</h4>
+        <p>Recopilamos y analizamos toda la información necesaria para la toma de decisiones y la justificación de proyectos.</p>
+      </div>
+      <div class="how-step reveal" style="transition-delay:.1s">
+        <div class="how-num">2</div>
+        <h4>Diagnóstico</h4>
+        <p>Identificamos fortalezas, oportunidades de mejora y los ODS más relevantes para tu actividad y sector.</p>
+      </div>
+      <div class="how-step reveal" style="transition-delay:.2s">
+        <div class="how-num">3</div>
+        <h4>Capacitación</h4>
+        <p>El éxito depende de los recursos humanos. Los involucramos desde el inicio del proceso para garantizar el cambio.</p>
+      </div>
+      <div class="how-step reveal" style="transition-delay:.3s">
+        <div class="how-num">4</div>
+        <h4>Documentación útil</h4>
+        <p>El coste se convierte en inversión: reportes, memorias y certificaciones que generan valor y reconocimiento.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     FOUNDER / NOELIA
+════════════════════════════════════════════ -->
+<section class="founder">
+  <div class="container">
+    <div class="founder-grid">
+      <div class="founder-photo-wrap reveal-left">
+        <img
+          src="https://benaila.com/wp-content/uploads/2023/01/foto-noelia-video-naranja.jpg"
+          alt="Noelia Pericón, fundadora de NAILA Business Evolver"
+          class="founder-photo" style="transform:scaleX(-1)"
+          onerror="this.src='img/noelia-2026.jpg'"
+        />
+        <div class="founder-badge">
+          <strong>+15</strong>
+          <span>años de experiencia</span>
+        </div>
+      </div>
+      <div class="founder-text reveal-right">
+        <p class="section-label">Quiénes somos</p>
+        <h2>Nuestro equipo de profesionales</h2>
+        <blockquote>
+          "Tan esencial como la naturaleza, es el ser humano. Para poder desarrollarnos dentro de la sociedad del bienestar se necesita de infraestructuras sólidas, estructuras legales y una buena economía que perduren en el tiempo."
+        </blockquote>
+        <p>Nuestra metodología adaptada a tu tiempo y tus recursos lo garantiza — alcanzar una verdadera <strong>Gestión Sostenible</strong>, el éxito y el reconocimiento.</p>
+        <p>A través de Diagnósticos, Certificaciones y Memorias Sostenibles, conseguirás identificar, sacarle provecho y transmitir tus puntos fuertes, mientras que nuestras propuestas en materia de <strong>Innovación Circular</strong> y cadenas de suministro sostenibles te garantizarán el aprovechamiento de los mercados actuales y futuros.</p>
+        <div style="display:flex; gap:1rem; margin-top:2rem; flex-wrap:wrap;">
+          <a href="#contacto" class="btn btn-primary">Hablar con Noelia</a>
+          <a href="https://linkedin.com/company/naila-business-evolver" class="btn btn-outline" target="_blank">LinkedIn →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     BLOG — NOELIA & RECURSOS
+════════════════════════════════════════════ -->
+<section class="blog-section" id="blog">
+  <div class="container">
+
+    <!-- Bio de Noelia — tarjeta compacta que abre modal -->
+    <div class="blog-cta-strip reveal">
+      <img
+        src="img/noelia-2026.jpg"
+        alt="Noelia Pericón"
+        class="blog-cta-photo"
+        onerror="this.src='https://benaila.com/wp-content/uploads/2023/01/foto-noelia-video-naranja.jpg'"
+      />
+      <div class="blog-cta-text">
+        <h3 data-i18n="blog.title">Noelia Pericón · Fundadora &amp; Consultora Estratégica</h3>
+        <p data-i18n="blog.bio1">+15 años acompañando empresas, ONGs y organismos públicos en España, Dinamarca y América Latina. Especialista en GRI, Economía Circular e Internacionalización.</p>
+      </div>
+      <button onclick="document.getElementById('modal-noelia').classList.add('open')" class="btn btn-outline" data-i18n="blog.label">Conoce a Noelia →</button>
+    </div>
+
+    <!-- Artículos / Recursos -->
+    <div class="reveal" style="margin-top:4rem; text-align:center;">
+      <p class="section-label" data-i18n="blog.art.label">Recursos &amp; Artículos</p>
+      <h2 class="section-title" data-i18n="blog.art.title">Insights de Noelia</h2>
+      <p class="section-sub" data-i18n="blog.art.sub">Reflexiones y guías prácticas sobre sostenibilidad, economía circular e internacionalización empresarial.</p>
+    </div>
+
+    <div class="blog-grid">
+
+      <article class="blog-card reveal">
+        <div class="blog-card-cat blog-cat-ec" data-i18n="blog.cat.ec">Economía Circular</div>
+        <h3 data-i18n="blog.art1.title">¿Cómo empezar con la Economía Circular en tu empresa?</h3>
+        <p data-i18n="blog.art1.text">La transición hacia un modelo circular no requiere grandes inversiones iniciales. Descubre los pasos prácticos que seguimos con nuestros clientes para identificar oportunidades reales en tu cadena de valor.</p>
+        <div class="blog-card-meta">
+          <span>Noelia Pericón</span>
+          <span data-i18n="blog.readmore">Leer más →</span>
+        </div>
+      </article>
+
+      <article class="blog-card reveal" style="transition-delay:.1s">
+        <div class="blog-card-cat blog-cat-gs" data-i18n="blog.cat.gs">Gestión Sostenible</div>
+        <h3 data-i18n="blog.art2.title">Memorias de Sostenibilidad GRI: qué son y por qué tu PYME las necesita</h3>
+        <p data-i18n="blog.art2.text">Una memoria GRI no es solo para grandes corporaciones. Te explicamos cómo una PYME puede acceder a este reconocimiento internacional sin grandes costes, y qué beneficios concretos aporta a tu negocio.</p>
+        <div class="blog-card-meta">
+          <span>Noelia Pericón</span>
+          <span data-i18n="blog.readmore">Leer más →</span>
+        </div>
+      </article>
+
+      <article class="blog-card reveal" style="transition-delay:.2s">
+        <div class="blog-card-cat blog-cat-int" data-i18n="blog.cat.int">Internacionalización</div>
+        <h3 data-i18n="blog.art3.title">Expandirse a Dinamarca y el mercado nórdico: guía para empresas españolas</h3>
+        <p data-i18n="blog.art3.text">El mercado escandinavo valora especialmente la sostenibilidad y la transparencia empresarial. Con más de 10 años de experiencia entre España y Dinamarca, Noelia comparte las claves para entrar con éxito.</p>
+        <div class="blog-card-meta">
+          <span>Noelia Pericón</span>
+          <span data-i18n="blog.readmore">Leer más →</span>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     PHILOSOPHY — Business 3D · WIN·WIN·WIN
+════════════════════════════════════════════ -->
+<section class="philosophy" style="background: var(--arena);">
+  <div class="container">
+    <div class="reveal" style="text-align:center; max-width:680px; margin:0 auto;">
+      <p class="section-label">Nuestra filosofía · Business-3D</p>
+      <h2 class="section-title"><span class="emprint-word" style="font-size:inherit;"><span class="e">W</span>in · <span class="e">W</span>in · <span class="e">W</span>in</span></h2>
+      <p class="section-sub" style="max-width:100%;">"Si ganan las personas y gana el entorno, <strong>ganamos las empresas</strong>." La metodología Business-3D de NAILA genera valor simultáneo en los tres niveles que mueven el mundo.</p>
+    </div>
+
+    <div class="win3-grid">
+      <div class="win3-card win3-planet reveal">
+        <span class="win3-icon">🌍</span>
+        <div class="win3-who">1er WIN</div>
+        <h3>Gana el Entorno</h3>
+        <p>Cada decisión empresarial tiene impacto ambiental. Con economía circular, gestión de residuos y cadenas de suministro sostenibles, tu empresa reduce su huella y genera valor ecosistémico real.</p>
+      </div>
+      <div class="win3-card win3-people reveal" style="transition-delay:.1s">
+        <span class="win3-icon">🤝</span>
+        <div class="win3-who">2º WIN</div>
+        <h3>Ganan las Personas</h3>
+        <p>Empleados, comunidades y colaboradores son el motor del cambio. Cultura empresarial consciente, bienestar organizacional y cooperación internacional son parte de nuestro enfoque.</p>
+      </div>
+      <div class="win3-card win3-biz reveal" style="transition-delay:.2s">
+        <span class="win3-icon">🏆</span>
+        <div class="win3-who">3er WIN</div>
+        <h3>Gana tu Empresa</h3>
+        <p>Sostenibilidad rentable. Acceso a mercados europeos y nórdicos, certificaciones GRI reconocidas internacionalmente y diferenciación competitiva que se traduce en resultados concretos.</p>
+      </div>
+    </div>
+
+    <div style="margin-top:3rem; display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:1rem;" class="reveal">
+      <div class="phi-card">
+        <div class="phi-icon">📐</div>
+        <h4>Flexible &amp; Conveniente</h4>
+        <p>Presencial u online, sin rigideces de horario ni recursos. Adaptado a tu ritmo.</p>
+      </div>
+      <div class="phi-card">
+        <div class="phi-icon">🏅</div>
+        <h4>Certificada GRI</h4>
+        <p>Las PYMEs tienen derecho a certificarse sin grandes gastos — nosotras lo hacemos posible.</p>
+      </div>
+      <div class="phi-card">
+        <div class="phi-icon">🎯</div>
+        <h4>Metodología Garantizada</h4>
+        <p>Alineada con estándares internacionales y adaptada al tamaño y sector de tu empresa.</p>
+      </div>
+      <div class="phi-card">
+        <div class="phi-icon">💶</div>
+        <h4>Tarifa Accesible</h4>
+        <p>Soluciones y precios a medida. Si no ves lo que necesitas, <a href="#contacto" style="color:var(--verde);font-weight:700;">contáctanos</a>.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     SECTORS
+════════════════════════════════════════════ -->
+<section class="sectors">
+  <div class="container">
+    <div class="reveal">
+      <p class="section-label">Con quién trabajamos</p>
+      <h2 class="section-title">Más de 15 años acompañando empresas</h2>
+      <p class="section-sub">Adaptamos nuestra metodología a todo tipo de sectores y realidades empresariales.</p>
+    </div>
+    <div class="sectors-tags reveal">
+      <span class="stag">Sin ánimo de lucro</span>
+      <span class="stag">Tecnología digital</span>
+      <span class="stag">Sector primario</span>
+      <span class="stag">Higiene &amp; Estética</span>
+      <span class="stag">Asesorías y Consultorías</span>
+      <span class="stag">Servicios Industriales</span>
+      <span class="stag">Eventos, Arte y Cultura</span>
+      <span class="stag">Salud &amp; Seguridad</span>
+      <span class="stag">Servicios Sociales</span>
+      <span class="stag">Maquinaria y Equipamiento</span>
+      <span class="stag">Catering y Alimentación</span>
+      <span class="stag">Logística</span>
+      <span class="stag">Educación y Formación</span>
+      <span class="stag">Internacionales / Multiculturales</span>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     CLIENTS
+════════════════════════════════════════════ -->
+<section class="clients" id="clientes">
+  <div class="container">
+    <div class="reveal">
+      <p class="section-label">Clientes y colaboradores</p>
+      <h2 class="section-title">Confían en NAILA</h2>
+      <p class="section-sub">Empresas, instituciones y organismos internacionales que trabajan con nosotras.</p>
+    </div>
+  </div>
+  <div class="marquee-wrap" style="margin-top:2.5rem;">
+    <div class="marquee-track">
+      <img src="img/clients/aje.png" alt="AJE" class="client-img" />
+      <img src="img/clients/camara-gc.png" alt="Cámara Gran Canaria" class="client-img" />
+      <img src="img/clients/camara-sc.png" alt="Cámara Santa Cruz" class="client-img" />
+      <img src="img/clients/cmc.png" alt="CMC Cluster Marítimo" class="client-img" />
+      <img src="img/clients/consulta-europa.png" alt="Consulta Europa" class="client-img" />
+      <img src="img/clients/empleoland.png" alt="Empleoland" class="client-img" />
+      <img src="img/clients/emprendeclub.png" alt="Emprendeclub" class="client-img" />
+      <img src="img/clients/enermed.png" alt="ENERMED" class="client-img" />
+      <img src="img/clients/enterprise-europe-network.png" alt="Enterprise Europe Network" class="client-img" />
+      <img src="img/clients/gobierno-canarias.png" alt="Gobierno de Canarias" class="client-img" />
+      <img src="img/clients/institut-menneske.png" alt="Institut for Menneskerettigheder" class="client-img" />
+      <img src="img/clients/interreg-eu.png" alt="Interreg EU" class="client-img" />
+      <img src="img/clients/itc-canarias.png" alt="ITC Canarias" class="client-img" />
+      <img src="img/clients/ktk.png" alt="KTK" class="client-img" />
+      <img src="img/clients/prodesco.png" alt="Prodesco" class="client-img" />
+      <img src="img/clients/proexca.png" alt="Proexca" class="client-img" />
+      <img src="img/clients/smartblue-f.png" alt="SmartBlue" class="client-img" />
+      <img src="img/clients/w2ew.png" alt="W2EW" class="client-img" />
+      <img src="img/clients/wavepiston.png" alt="Wavepiston" class="client-img" />
+      <img src="img/clients/world-humanitarian-forum.png" alt="World Humanitarian Forum" class="client-img" />
+      <!-- duplicate for seamless loop -->
+      <img src="img/clients/aje.png" alt="AJE" class="client-img" />
+      <img src="img/clients/camara-gc.png" alt="Cámara Gran Canaria" class="client-img" />
+      <img src="img/clients/camara-sc.png" alt="Cámara Santa Cruz" class="client-img" />
+      <img src="img/clients/cmc.png" alt="CMC Cluster Marítimo" class="client-img" />
+      <img src="img/clients/consulta-europa.png" alt="Consulta Europa" class="client-img" />
+      <img src="img/clients/empleoland.png" alt="Empleoland" class="client-img" />
+      <img src="img/clients/emprendeclub.png" alt="Emprendeclub" class="client-img" />
+      <img src="img/clients/enermed.png" alt="ENERMED" class="client-img" />
+      <img src="img/clients/enterprise-europe-network.png" alt="Enterprise Europe Network" class="client-img" />
+      <img src="img/clients/gobierno-canarias.png" alt="Gobierno de Canarias" class="client-img" />
+      <img src="img/clients/institut-menneske.png" alt="Institut for Menneskerettigheder" class="client-img" />
+      <img src="img/clients/interreg-eu.png" alt="Interreg EU" class="client-img" />
+      <img src="img/clients/itc-canarias.png" alt="ITC Canarias" class="client-img" />
+      <img src="img/clients/ktk.png" alt="KTK" class="client-img" />
+      <img src="img/clients/prodesco.png" alt="Prodesco" class="client-img" />
+      <img src="img/clients/proexca.png" alt="Proexca" class="client-img" />
+      <img src="img/clients/smartblue-f.png" alt="SmartBlue" class="client-img" />
+      <img src="img/clients/w2ew.png" alt="W2EW" class="client-img" />
+      <img src="img/clients/wavepiston.png" alt="Wavepiston" class="client-img" />
+      <img src="img/clients/world-humanitarian-forum.png" alt="World Humanitarian Forum" class="client-img" />
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     CERTIFICATIONS
+════════════════════════════════════════════ -->
+<section class="certs">
+  <div class="container">
+    <div class="reveal" style="text-align:center; color:#fff;">
+      <p class="section-label" style="color:var(--verde2);">Reconocimientos internacionales</p>
+      <h2 class="section-title">Certificadas y reconocidas</h2>
+      <p class="section-sub" style="color:rgba(255,255,255,.55); margin:0 auto;">Las certificaciones que respaldan nuestra experiencia y compromiso internacional.</p>
+    </div>
+    <div class="certs-grid">
+      <div class="cert-card reveal">
+        <img src="img/cert-weconnect.png" alt="WEConnect Certified WBE" class="cert-img" />
+        <p>WEConnect International · Certificación de empresa certificada y liderada por mujeres</p>
+      </div>
+      <div class="cert-card reveal" style="transition-delay:.1s">
+        <img src="img/cert-gri-banner.png" alt="GRI Community 2020" class="cert-img" />
+        <p>GRI Community · Certificación para elaboración de memorias de sostenibilidad y reconocimientos internacionales</p>
+      </div>
+      <div class="cert-card reveal" style="transition-delay:.2s">
+        <img src="img/cert-humanitarian.png" alt="Humanitarian Principles" class="cert-img" />
+        <p>Principios Humanitarios · Compromisos con los estándares de cooperación internacional y ayuda humanitaria</p>
+      </div>
+      <div class="cert-card reveal" style="transition-delay:.3s">
+        <img src="img/cert-women-owned.png" alt="Women Owned" class="cert-img" />
+        <p>Women Owned Business · Empresa certificada y liderada por mujeres con impacto global</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     ODS
+════════════════════════════════════════════ -->
+<section class="ods-section">
+  <div class="container">
+    <div class="ods-grid">
+      <div class="reveal-left">
+        <p class="section-label">Nuestro compromiso</p>
+        <h2 class="section-title">Alineados con los ODS · Agenda 2030</h2>
+        <p class="section-sub" style="max-width:none;">Todos nuestros servicios contribuyen directamente a los Objetivos de Desarrollo Sostenible de Naciones Unidas. Trabajamos especialmente con los ODS que mayor impacto tienen en la economía y las empresas.</p>
+        <div class="ods-badges">
+          <span class="ods-badge">ODS 8 · Trabajo Decente</span>
+          <span class="ods-badge">ODS 9 · Industria e Innovación</span>
+          <span class="ods-badge">ODS 11 · Ciudades Sostenibles</span>
+          <span class="ods-badge">ODS 12 · Consumo Responsable</span>
+          <span class="ods-badge">ODS 13 · Acción por el Clima</span>
+          <span class="ods-badge">ODS 5 · Igualdad de Género</span>
+          <span class="ods-badge">ODS 17 · Alianzas</span>
+        </div>
+      </div>
+      <img
+        src="img/ods-wheel.png"
+        alt="ODS Objetivos de Desarrollo Sostenible NAILA"
+        class="ods-img reveal-right"
+      />
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     CONTACT
+════════════════════════════════════════════ -->
+<section class="contact" id="contacto">
+  <div class="container">
+    <div class="reveal" style="text-align:center; margin-bottom:0;">
+      <p class="section-label">¿Hablamos?</p>
+      <h2 class="section-title">Agenda tu consulta</h2>
+      <p class="section-sub" style="margin:0 auto;">Reserva una reunión directamente con nuestras asesoras. Confirmación por email inmediata.</p>
+    </div>
+    <div class="contact-grid">
+      <div class="contact-info reveal-left">
+        <div class="contact-details">
+          <div class="contact-row">
+            <div class="contact-icon">📍</div>
+            <div>
+              <strong>Dirección</strong>
+              <span>Juan de Quesada, 22 · Las Palmas de Gran Canaria</span>
+            </div>
+          </div>
+          <div class="contact-row">
+            <div class="contact-icon">🕐</div>
+            <div>
+              <strong>Horario de oficina</strong>
+              <span>Lunes–Viernes, 8:00–16:00 (CET)</span>
+            </div>
+          </div>
+          <div class="contact-row">
+            <div class="contact-icon">✉️</div>
+            <div>
+              <strong>Email</strong>
+              <span>contact@benaila.com</span>
+            </div>
+          </div>
+          <div class="contact-row">
+            <div class="contact-icon">💬</div>
+            <div>
+              <strong>WhatsApp</strong>
+              <span>+34 662 373 313</span>
+            </div>
+          </div>
+          <div class="contact-row">
+            <div class="contact-icon">🔗</div>
+            <div>
+              <strong>LinkedIn</strong>
+              <a href="https://linkedin.com/company/naila-business-evolver" target="_blank" style="color:var(--verde); font-size:.85rem;">NAILA Business Evolver</a>
+            </div>
+          </div>
+        </div>
+        <div class="contact-avail">
+          <strong>Disponibilidad para reuniones</strong>
+          <p>L–V · 16:00–18:00 &nbsp;|&nbsp; Sáb · 10:00–12:00 (CET)<br/>
+          Consultas online disponibles para clientes internacionales.</p>
+        </div>
+      </div>
+      <div class="contact-form reveal-right">
+        <h3>Escríbenos directamente</h3>
+        <div class="form-row">
+          <div class="fg">
+            <label>Nombre</label>
+            <input type="text" placeholder="Tu nombre" />
+          </div>
+          <div class="fg">
+            <label>Email</label>
+            <input type="email" placeholder="tu@empresa.com" />
+          </div>
+        </div>
+        <div class="fg">
+          <label>Empresa</label>
+          <input type="text" placeholder="Nombre de tu empresa" />
+        </div>
+        <div class="fg">
+          <label>Área de interés</label>
+          <select>
+            <option>Economía Circular</option>
+            <option>Gestión Sostenible</option>
+            <option>Internacionalización</option>
+            <option>eMPRINT — Proyecto integral</option>
+            <option>Otro</option>
+          </select>
+        </div>
+        <div class="fg">
+          <label>Mensaje</label>
+          <textarea placeholder="Cuéntanos brevemente qué necesita tu empresa..."></textarea>
+        </div>
+        <div class="form-security">
+          <span>🔒 Datos protegidos · RGPD</span>
+          <span>✓ Respuesta en menos de 24h</span>
+        </div>
+        <button class="btn btn-primary btn-lg" style="width:100%;">Enviar mensaje →</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     MODAL — CONOCE A NOELIA
+════════════════════════════════════════════ -->
+<div class="modal-overlay" id="modal-noelia" onclick="if(event.target===this)this.classList.remove('open')">
+  <div class="modal-box">
+    <button class="modal-close" onclick="document.getElementById('modal-noelia').classList.remove('open')" aria-label="Cerrar">✕</button>
+    <div class="modal-noelia-header">
+      <img
+        src="img/noelia-2026.jpg"
+        alt="Noelia Pericón"
+        onerror="this.src='https://benaila.com/wp-content/uploads/2023/01/foto-noelia-video-naranja.jpg'"
+      />
+      <div class="modal-noelia-meta">
+        <div class="role">Fundadora · NAILA Business Evolver</div>
+        <h2>Noelia Pericón</h2>
+        <p class="tagline">Consultora estratégica en Economía Circular, Gestión Sostenible e Internacionalización. Más de 15 años transformando empresas con propósito.</p>
+      </div>
+    </div>
+    <div class="modal-noelia-body">
+      <p>Noelia Pericón es consultora de gestión sostenible e internacionalización con <strong>más de 15 años de trayectoria</strong> acompañando a empresas, ONGs y organismos públicos en España, Dinamarca y América Latina. Especialista en Economía Circular, memorias GRI y estrategias de expansión internacional.</p>
+      <blockquote>"Si ganan las personas y gana el entorno, ganamos las empresas. Esa es la base de todo lo que hacemos en NAILA."</blockquote>
+      <p>Certificada por <strong>GRI (Global Reporting Initiative)</strong> y miembro activo de <strong>WEConnect International</strong>, Noelia desarrolló la metodología <em>Business-3D WIN·WIN·WIN</em> para demostrar que la sostenibilidad y la rentabilidad no son opuestos — son aliados. Su experiencia entre el mercado español y el escandinavo le otorga una visión única para empresas que buscan internacionalizarse con impacto.</p>
+      <p>Con base en <strong>Las Palmas de Gran Canaria</strong>, opera con clientes en España, Dinamarca, Alemania y América Latina, liderando proyectos de cooperación internacional, diagnóstico empresarial y certificación sostenible. Colabora con organismos como la <strong>Cámara de Comercio</strong>, <strong>PROEXCA</strong>, <strong>Enterprise Europe Network</strong> y el <strong>World Humanitarian Forum</strong>.</p>
+      <div class="modal-tags">
+        <span class="stag">GRI Certified</span>
+        <span class="stag">WEConnect International</span>
+        <span class="stag">Economía Circular</span>
+        <span class="stag">Agenda 2030</span>
+        <span class="stag">Internacionalización</span>
+        <span class="stag">+15 años de experiencia</span>
+        <span class="stag">España · Dinamarca</span>
+      </div>
+      <div class="modal-ctas">
+        <a href="#contacto" class="btn btn-primary" onclick="document.getElementById('modal-noelia').classList.remove('open')">Hablar con Noelia</a>
+        <a href="https://linkedin.com/company/naila-business-evolver" target="_blank" class="btn btn-outline">LinkedIn →</a>
+        <a href="https://benaila.com" target="_blank" class="btn btn-outline">benaila.com →</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     MODAL — eMPRINT DETALLE
+════════════════════════════════════════════ -->
+<div class="modal-overlay" id="modal-emprint" onclick="if(event.target===this)this.classList.remove('open')">
+  <div class="modal-box">
+    <button class="modal-close" onclick="document.getElementById('modal-emprint').classList.remove('open')" aria-label="Cerrar">✕</button>
+    <div class="modal-emprint-header">
+      <img src="img/logo-emprint.png" alt="eMPRINT" />
+      <p>El programa de certificación y transformación integral para empresas que quieren dejar una huella positiva — <strong style="color:var(--verde3)">digital, empresarial e internacional</strong>.</p>
+    </div>
+    <div class="modal-emprint-body">
+
+      <h3>¿Qué es eMPRINT?</h3>
+      <p style="color:var(--gris);font-size:.92rem;line-height:1.75;">
+        <strong class="emprint-word" style="font-size:1rem;"><span class="e">e</span>MPRINT</strong> es el modelo de certificación empresarial de NAILA Business Evolver. Cada sílaba es intencional: <em><b>e·</b> electrónico/digital</em> — <em><b>empr·</b> empresa</em> — <em><b>·print·</b> huella que dejamos</em> — <em><b>·INT</b> internacional</em>. Juntas forman la identidad de una empresa que evoluciona con propósito.
+      </p>
+
+      <h3>Los 3 pilares del programa</h3>
+      <div class="emprint-pillars">
+        <div class="emprint-pillar ep-eco">
+          <div class="pi">♻️</div>
+          <h4>Economía Circular</h4>
+          <p>Análisis de tu cadena de valor, reducción de residuos y oportunidades de reinserción de materiales para un modelo de negocio circular.</p>
+        </div>
+        <div class="emprint-pillar ep-sos">
+          <div class="pi">🌿</div>
+          <h4>Gestión Sostenible</h4>
+          <p>Diagnóstico GRI, memoria de sostenibilidad, ODS aplicados y plan estratégico alineado con los estándares internacionales.</p>
+        </div>
+        <div class="emprint-pillar ep-int">
+          <div class="pi">🌐</div>
+          <h4>Internacionalización</h4>
+          <p>Expansión a mercados europeos y nórdicos. Talleres, formación y acompañamiento para empresas que quieren crecer más allá de sus fronteras.</p>
+        </div>
+      </div>
+
+      <h3>Cómo convertirte en una empresa eMPRINT</h3>
+      <div class="emprint-steps">
+        <div class="emprint-step">
+          <div class="emprint-step-num">1</div>
+          <div>
+            <h4>Autodiagnóstico gratuito</h4>
+            <p>Completa el test de 25 preguntas en el área que más te interese. Sin compromiso, en 10 minutos obtienes un diagnóstico real de tu situación.</p>
+          </div>
+        </div>
+        <div class="emprint-step">
+          <div class="emprint-step-num">2</div>
+          <div>
+            <h4>Sesión de análisis personalizado</h4>
+            <p>Noelia revisa tus resultados y diseña un plan a medida. Identificamos oportunidades concretas para tu sector y tamaño de empresa.</p>
+          </div>
+        </div>
+        <div class="emprint-step">
+          <div class="emprint-step-num">3</div>
+          <div>
+            <h4>Implementación y acompañamiento</h4>
+            <p>Ejecutamos el plan juntos: diagnósticos, talleres, memorias, certificaciones y formación de equipos. Presencial u online, a tu ritmo.</p>
+          </div>
+        </div>
+        <div class="emprint-step">
+          <div class="emprint-step-num">4</div>
+          <div>
+            <h4>Certificación eMPRINT</h4>
+            <p>Tu empresa recibe el sello eMPRINT, válido para comunicación corporativa, acceso a licitaciones y diferenciación en mercados internacionales.</p>
+          </div>
+        </div>
+      </div>
+
+      <h3>¿Qué obtienes al ser una empresa eMPRINT?</h3>
+      <div class="emprint-what-get">
+        <div class="ewg-item">
+          <div class="ewg-icon">🏅</div>
+          <p><strong>Sello eMPRINT certificado</strong>Reconocimiento verificado para comunicación y licitaciones.</p>
+        </div>
+        <div class="ewg-item">
+          <div class="ewg-icon">📊</div>
+          <p><strong>Memoria GRI</strong>Informe de sostenibilidad alineado con estándares internacionales.</p>
+        </div>
+        <div class="ewg-item">
+          <div class="ewg-icon">🗺️</div>
+          <p><strong>Plan de acción estratégico</strong>Hoja de ruta personalizada a 12-24 meses con métricas claras.</p>
+        </div>
+        <div class="ewg-item">
+          <div class="ewg-icon">🌍</div>
+          <p><strong>Acceso a redes internacionales</strong>WEConnect, Enterprise Europe Network y mercados nórdicos.</p>
+        </div>
+        <div class="ewg-item">
+          <div class="ewg-icon">🎓</div>
+          <p><strong>Formación del equipo</strong>Talleres y capacitación para que la sostenibilidad sea parte de tu cultura.</p>
+        </div>
+        <div class="ewg-item">
+          <div class="ewg-icon">💬</div>
+          <p><strong>Seguimiento continuo</strong>Acompañamiento post-certificación para mantener y mejorar tu impacto.</p>
+        </div>
+      </div>
+
+      <div style="margin-top:2rem; padding-top:1.5rem; border-top:1px solid var(--borde); display:flex; gap:1rem; flex-wrap:wrap;">
+        <a href="#contacto" class="btn btn-primary btn-lg" onclick="document.getElementById('modal-emprint').classList.remove('open')">Quiero ser una empresa eMPRINT</a>
+        <a href="https://benaila-final.vercel.app" target="_blank" class="btn btn-outline btn-lg">Hacer el autodiagnóstico →</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     FOOTER
+════════════════════════════════════════════ -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <img src="img/naila-logo-color-hq.png" alt="NAILA Business Evolver" class="footer-logo" />
+      <p>Consultoría estratégica de sostenibilidad e internacionalización. Ayudamos a empresas a evolucionar con propósito.</p>
+      <blockquote class="footer-quote">"Si ganan las personas y gana el entorno, ganamos las empresas"</blockquote>
+      <div class="footer-badges">
+        <img src="img/cert-weconnect.png" alt="WEConnect" style="height:28px; filter:brightness(0) invert(1) opacity(.6);" />
+        <img src="img/cert-gri-banner.png" alt="GRI" style="height:28px; filter:brightness(0) invert(1) opacity(.6);" />
+      </div>
+      <div class="footer-social">
+        <a href="https://linkedin.com/company/naila-business-evolver" target="_blank" aria-label="LinkedIn">in</a>
+        <a href="https://wa.me/34662373313" target="_blank" aria-label="WhatsApp">W</a>
+      </div>
+    </div>
+    <div>
+      <h5>Servicios</h5>
+      <ul>
+        <li><a href="#servicios">Economía Circular</a></li>
+        <li><a href="#servicios">Gestión Sostenible</a></li>
+        <li><a href="#servicios">Internacionalización</a></li>
+        <li><a href="#emprint">eMPRINT</a></li>
+      </ul>
+    </div>
+    <div>
+      <h5>Legal</h5>
+      <ul>
+        <li><a href="#">Términos de venta</a></li>
+        <li><a href="#">Devoluciones</a></li>
+        <li><a href="#">Privacidad</a></li>
+        <li><a href="#">Cookies</a></li>
+      </ul>
+    </div>
+    <div>
+      <h5>Contacto</h5>
+      <ul>
+        <li><a href="mailto:contact@benaila.com">contact@benaila.com</a></li>
+        <li><a href="https://wa.me/34662373313">WhatsApp</a></li>
+        <li><a href="https://linkedin.com/company/naila-business-evolver">LinkedIn</a></li>
+        <li><a href="#">Juan de Quesada, 22 · Las Palmas</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 Noelia Pericón · NAILA Business Evolver, S.L.U.</span>
+    <div class="footer-security">
+      <span>🔒 Stripe</span>
+      <span>🛡️ SSL 256-bit</span>
+    </div>
+    <div style="display:flex; gap:1rem;">
+      <a href="#">Privacidad</a>
+      <a href="#">Cookies</a>
+      <a href="#">Términos</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+// ── Scroll reveal ───────────────────────────
+const obs = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('on');
+      obs.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+document.querySelectorAll('.reveal, .reveal-left, .reveal-right').forEach(el => obs.observe(el));
+
+// ── i18n ─────────────────────────────────────
+const T = {
+  es: {
+    'emprint.eyebrow':'El camino hacia la transformación integral','emprint.become':'Conviértete en una','emprint.e':'electrónico / digital','emprint.empr':'empresa','emprint.print':'huella que dejamos','emprint.int':'internacional','emprint.cta':'Consulta presupuesto personalizado','emprint.more':'¿Qué es eMPRINT? →','blog.label':'Conoce a Noelia →',
+    'hero.location':'Las Palmas de Gran Canaria · España &amp; Internacional','hero.title':'Asesoramiento estratégico','hero.title2':'a medida para tu empresa','hero.lead':'Con <strong>sesiones personalizadas</strong> te guiamos hacia la sostenibilidad y ayudamos a tu empresa a alcanzar su máximo potencial. Diagnósticos, asesoramiento y capacitación en <strong>3 líneas de negocio</strong>.','hero.pill1':'Economía Circular','hero.pill1sub':'Análisis integral','hero.pill2':'Gestión Sostenible','hero.pill2sub':'Plan a medida','hero.pill3':'Internacionalización','hero.pill3sub':'Talleres y formación','hero.cta1':'Ver servicios','hero.cta2':'Conviértete en una','hero.badge':'Fundadora de beNaila',
+    'quote.text':'"Si ganan las personas y gana el entorno, ganamos las empresas"','quote.author':'— Noelia Pericón, fundadora de beNaila',
+    'blog.label':'Conoce a Noelia','blog.title':'Noelia Pericón · Fundadora &amp; Consultora Estratégica','blog.bio1':'Noelia es consultora de gestión sostenible e internacionalización con más de 15 años acompañando a empresas, ONGs y organismos públicos en España, Dinamarca y América Latina.','blog.bio2':'Certificada por <strong>GRI</strong>, miembro de <strong>WEConnect International</strong>. Su enfoque integra la sostenibilidad real con la rentabilidad empresarial.','blog.linkedin':'Ver perfil en LinkedIn →','blog.art.label':'Recursos &amp; Artículos','blog.art.title':'Insights de Noelia','blog.art.sub':'Reflexiones y guías prácticas sobre sostenibilidad, economía circular e internacionalización empresarial.','blog.cat.ec':'Economía Circular','blog.cat.gs':'Gestión Sostenible','blog.cat.int':'Internacionalización','blog.art1.title':'¿Cómo empezar con la Economía Circular en tu empresa?','blog.art1.text':'La transición hacia un modelo circular no requiere grandes inversiones iniciales. Identifica oportunidades reales en tu cadena de valor.','blog.art2.title':'Memorias GRI: qué son y por qué tu PYME las necesita','blog.art2.text':'Una memoria GRI no es solo para grandes corporaciones. Te explicamos cómo acceder a este reconocimiento sin grandes costes.','blog.art3.title':'Expandirse al mercado nórdico: guía para empresas españolas','blog.art3.text':'El mercado escandinavo valora la sostenibilidad. Con 10+ años entre España y Dinamarca, Noelia comparte las claves del éxito.','blog.readmore':'Leer más →'
+  },
+  en: {
+    'emprint.eyebrow':'The path to integral transformation','emprint.become':'Become an','emprint.e':'electronic / digital','emprint.empr':'enterprise','emprint.print':'the footprint we leave','emprint.int':'international','emprint.cta':'Request a personalised quote','emprint.more':'What is eMPRINT? →','blog.label':'Meet Noelia →',
+    'hero.location':'Las Palmas de Gran Canaria · Spain &amp; International','hero.title':'Strategic consulting','hero.title2':'tailored to your business','hero.lead':'With <strong>personalised sessions</strong> we guide you towards sustainability and help your company reach its highest potential. Diagnostics, advisory and training across <strong>3 business lines</strong>.','hero.pill1':'Circular Economy','hero.pill1sub':'Comprehensive analysis','hero.pill2':'Sustainable Management','hero.pill2sub':'Tailored plan','hero.pill3':'Internationalisation','hero.pill3sub':'Workshops &amp; training','hero.cta1':'View services','hero.cta2':'Become an','hero.badge':'Founder of beNaila',
+    'quote.text':'"When people win and the environment wins, businesses win"','quote.author':'— Noelia Pericón, founder of beNaila',
+    'blog.label':'Meet Noelia','blog.title':'Noelia Pericón · Founder &amp; Strategic Consultant','blog.bio1':'Noelia is a sustainable management and internationalisation consultant with over 15 years supporting companies, NGOs and public bodies in Spain, Denmark and Latin America.','blog.bio2':'Certified by <strong>GRI</strong>, member of <strong>WEConnect International</strong>. Her approach integrates real sustainability with business profitability.','blog.linkedin':'View LinkedIn profile →','blog.art.label':'Resources &amp; Articles','blog.art.title':"Noelia's Insights",'blog.art.sub':'Practical guides on sustainability, circular economy and business internationalisation.','blog.cat.ec':'Circular Economy','blog.cat.gs':'Sustainable Management','blog.cat.int':'Internationalisation','blog.art1.title':'How to start with the Circular Economy in your company?','blog.art1.text':'Transitioning to a circular model does not require large upfront investments. Discover real opportunities in your value chain.','blog.art2.title':'GRI Sustainability Reports: what they are and why your SME needs one','blog.art2.text':'A GRI report is not just for large corporations. We explain how an SME can access this international recognition at low cost.','blog.art3.title':'Expanding to the Nordic market: a guide for Spanish companies','blog.art3.text':'The Scandinavian market values sustainability. With 10+ years between Spain and Denmark, Noelia shares the keys to success.','blog.readmore':'Read more →'
+  },
+  da: {
+    'emprint.eyebrow':'Vejen til integral transformation','emprint.become':'Bliv en','emprint.e':'elektronisk / digital','emprint.empr':'virksomhed','emprint.print':'det aftryk vi efterlader','emprint.int':'international','emprint.cta':'Anmod om et personligt tilbud','emprint.more':'Hvad er eMPRINT? →','blog.label':'Mød Noelia →',
+    'hero.location':'Las Palmas de Gran Canaria · Spanien &amp; Internationalt','hero.title':'Strategisk rådgivning','hero.title2':'skræddersyet til din virksomhed','hero.lead':'Med <strong>personlige sessioner</strong> guider vi dig mod bæredygtighed og hjælper din virksomhed med at nå sit fulde potentiale. Diagnose, rådgivning og uddannelse inden for <strong>3 forretningslinjer</strong>.','hero.pill1':'Cirkulær Økonomi','hero.pill1sub':'Grundig analyse','hero.pill2':'Bæredygtig Ledelse','hero.pill2sub':'Skræddersyet plan','hero.pill3':'Internationalisering','hero.pill3sub':'Workshops &amp; uddannelse','hero.cta1':'Se ydelser','hero.cta2':'Bliv en','hero.badge':'Grundlægger af beNaila',
+    'quote.text':'"Når mennesker vinder og miljøet vinder, vinder virksomhederne"','quote.author':'— Noelia Pericón, grundlægger af beNaila',
+    'blog.label':'Mød Noelia','blog.title':'Noelia Pericón · Grundlægger &amp; Strategisk Konsulent','blog.bio1':'Noelia er konsulent inden for bæredygtig ledelse og internationalisering med over 15 års erfaring i Spanien, Danmark og Latinamerika.','blog.bio2':'Certificeret af <strong>GRI</strong>, medlem af <strong>WEConnect International</strong>. Hendes tilgang integrerer reel bæredygtighed med forretningsmæssig rentabilitet.','blog.linkedin':'Se LinkedIn-profil →','blog.art.label':'Ressourcer &amp; Artikler','blog.art.title':'Indsigt fra Noelia','blog.art.sub':'Praktiske vejledninger om bæredygtighed, cirkulær økonomi og virksomheders internationalisering.','blog.cat.ec':'Cirkulær Økonomi','blog.cat.gs':'Bæredygtig Ledelse','blog.cat.int':'Internationalisering','blog.art1.title':'Hvordan kommer din virksomhed i gang med cirkulær økonomi?','blog.art1.text':'Overgangen til en cirkulær model kræver ikke store investeringer. Opdag reelle muligheder i din værdikæde.','blog.art2.title':'GRI-rapporter: hvad er de, og hvorfor har din SMV brug for en?','blog.art2.text':'En GRI-rapport er ikke kun for store virksomheder. Vi forklarer, hvordan en SMV kan opnå anerkendelsen til lave omkostninger.','blog.art3.title':'Ekspansion til det nordiske marked: en guide til spanske virksomheder','blog.art3.text':'Det skandinaviske marked sætter pris på bæredygtighed. Med 10+ års erfaring deler Noelia nøglerne til succes.','blog.readmore':'Læs mere →'
+  }
+};
+
+let currentLang = 'es';
+function applyLang(lang) {
+  currentLang = lang;
+  const dict = T[lang] || T.es;
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.dataset.i18n;
+    if (dict[key] !== undefined) el.innerHTML = dict[key];
+  });
+  document.documentElement.lang = lang;
+}
+
+document.querySelectorAll('.nav-lang button').forEach(btn => {
+  const txt = btn.textContent.trim().toUpperCase();
+  if (txt === 'ES') btn.dataset.lang = 'es';
+  else if (txt === 'EN') btn.dataset.lang = 'en';
+  else if (txt === 'DA') btn.dataset.lang = 'da';
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.nav-lang button').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    applyLang(btn.dataset.lang || 'es');
+  });
+});
+
+// ── Smooth scroll ─────────────────────────────
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    const id = a.getAttribute('href');
+    if (id === '#') return;
+    const target = document.querySelector(id);
+    if (target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+  });
+});
+
+// ── Sticky header ──────────────────────────────
+const header = document.querySelector('.site-header');
+window.addEventListener('scroll', () => {
+  header.style.boxShadow = window.scrollY > 10 ? '0 2px 20px rgba(42,41,38,.12)' : 'none';
+}, { passive: true });
+
+// ── Modal — cerrar con Escape ──────────────────
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') {
+    document.querySelectorAll('.modal-overlay.open').forEach(m => m.classList.remove('open'));
+  }
+});
+// Bloquear scroll del body cuando un modal está abierto
+const modals = document.querySelectorAll('.modal-overlay');
+modals.forEach(m => {
+  const observer = new MutationObserver(() => {
+    document.body.style.overflow = document.querySelector('.modal-overlay.open') ? 'hidden' : '';
+  });
+  observer.observe(m, { attributes: true, attributeFilter: ['class'] });
+});
+</script>
+</body>
+</html>
