@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Chismes Sostenibles · Blog de NAILA Business Evolver</title>
+  <meta name="description" content="Reflexiones, guías prácticas y recursos sobre sostenibilidad, economía circular e internacionalización empresarial. Por Noelia Pericón." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --verde:  #1A6B3C;
+      --verde2: #2D8B55;
+      --verde3: #3aad6a;
+      --carbon: #2A2926;
+      --gris:   #6B7280;
+      --arena:  #F9F7F4;
+      --borde:  #E5E2DC;
+      --blanco: #FFFFFF;
+      --shadow: 0 4px 20px rgba(0,0,0,.08);
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Inter', sans-serif; color: var(--carbon); background: var(--blanco); }
+
+    /* NAV */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(255,255,255,.95); backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--borde);
+      padding: 1rem 2rem; display: flex; align-items: center; gap: 2rem;
+    }
+    .nav-logo { font-family: 'Outfit', sans-serif; font-weight: 800; font-size: 1.2rem; color: var(--verde); text-decoration: none; display: flex; align-items: center; gap: .5rem; }
+    .nav-logo span { color: var(--carbon); }
+    .nav-links { display: flex; gap: 1.5rem; margin-left: auto; }
+    .nav-links a { color: var(--gris); text-decoration: none; font-size: .9rem; font-weight: 500; transition: color .2s; }
+    .nav-links a:hover, .nav-links a.active { color: var(--verde); }
+
+    /* HERO BLOG */
+    .blog-hero {
+      background: linear-gradient(135deg, #0F4620 0%, #1A6B3C 60%, #2D8B55 100%);
+      color: #fff; padding: 5rem 2rem 4rem; text-align: center;
+    }
+    .blog-hero .label { font-size: .78rem; letter-spacing: .14em; text-transform: uppercase; color: var(--verde3); font-weight: 700; margin-bottom: 1rem; }
+    .blog-hero h1 { font-family: 'Outfit', sans-serif; font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 900; margin-bottom: 1rem; }
+    .blog-hero p { font-size: 1.05rem; color: rgba(255,255,255,.8); max-width: 580px; margin: 0 auto 2rem; line-height: 1.7; }
+
+    /* FILTERS */
+    .filters { display: flex; gap: .75rem; justify-content: center; flex-wrap: wrap; padding: 2rem 2rem 0; }
+    .filter-btn {
+      padding: .45rem 1.1rem; border-radius: 999px; border: 2px solid var(--borde);
+      background: var(--blanco); color: var(--gris); font-size: .85rem; font-weight: 600;
+      cursor: pointer; transition: all .2s;
+    }
+    .filter-btn:hover, .filter-btn.active { background: var(--verde); border-color: var(--verde); color: #fff; }
+
+    /* GRID */
+    .blog-container { max-width: 1100px; margin: 0 auto; padding: 2.5rem 2rem 6rem; }
+    .blog-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; margin-top: 2rem;
+    }
+    @media(max-width:900px) { .blog-grid { grid-template-columns: repeat(2,1fr); } }
+    @media(max-width:600px) { .blog-grid { grid-template-columns: 1fr; } }
+
+    /* CARDS */
+    .blog-card {
+      background: var(--blanco); border: 1px solid var(--borde); border-radius: 16px;
+      padding: 1.5rem; display: flex; flex-direction: column; gap: .75rem;
+      transition: transform .2s, box-shadow .2s, border-color .2s;
+    }
+    .blog-card:hover { transform: translateY(-4px); box-shadow: var(--shadow); border-color: var(--verde2); }
+    .card-cat {
+      display: inline-block; font-size: .72rem; font-weight: 700; letter-spacing: .08em;
+      text-transform: uppercase; padding: .25rem .65rem; border-radius: 999px;
+    }
+    .cat-ec   { background: #FFF8E1; color: #7a5c00; }
+    .cat-gs   { background: #E8F5E9; color: #1a5c30; }
+    .cat-int  { background: #E3F2FD; color: #1a3c6b; }
+    .cat-gen  { background: #F3E5F5; color: #4a1c6b; }
+    .blog-card h2 { font-family: 'Outfit', sans-serif; font-size: 1.05rem; font-weight: 800; line-height: 1.35; color: var(--carbon); }
+    .blog-card p  { font-size: .875rem; color: var(--gris); line-height: 1.7; flex: 1; }
+    .card-meta { display: flex; justify-content: space-between; align-items: center; margin-top: .5rem; }
+    .card-date { font-size: .78rem; color: var(--gris); }
+    .card-read { font-size: .82rem; color: var(--verde); font-weight: 700; text-decoration: none; }
+    .card-read:hover { text-decoration: underline; }
+
+    /* NEWSLETTER */
+    .newsletter {
+      background: var(--arena); border: 1px solid var(--borde); border-radius: 20px;
+      padding: 3rem 2rem; text-align: center; margin-top: 3rem;
+    }
+    .newsletter h3 { font-family: 'Outfit', sans-serif; font-size: 1.4rem; font-weight: 800; margin-bottom: .5rem; }
+    .newsletter p { color: var(--gris); font-size: .9rem; margin-bottom: 1.5rem; }
+    .newsletter-form { display: flex; gap: .75rem; max-width: 420px; margin: 0 auto; flex-wrap: wrap; }
+    .newsletter-form input {
+      flex: 1; min-width: 200px; padding: .7rem 1rem; border: 2px solid var(--borde);
+      border-radius: 8px; font-size: .9rem; outline: none; transition: border-color .2s;
+    }
+    .newsletter-form input:focus { border-color: var(--verde); }
+    .btn-verde {
+      padding: .7rem 1.5rem; background: var(--verde); color: #fff;
+      border: none; border-radius: 8px; font-weight: 700; font-size: .9rem;
+      cursor: pointer; transition: background .2s;
+    }
+    .btn-verde:hover { background: var(--verde2); }
+
+    /* FOOTER */
+    footer {
+      border-top: 1px solid var(--borde); padding: 2rem; text-align: center;
+      font-size: .85rem; color: var(--gris);
+    }
+    footer a { color: var(--verde); text-decoration: none; }
+
+    /* EMPTY STATE */
+    .empty { grid-column: 1/-1; text-align: center; padding: 3rem; color: var(--gris); }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="https://benaila.com" class="nav-logo">
+    <svg width="20" height="20" viewBox="0 0 40 40" fill="none"><circle cx="20" cy="20" r="20" fill="#1A6B3C"/><path d="M12 20c0-4.4 3.6-8 8-8s8 3.6 8 8-3.6 8-8 8" stroke="#fff" stroke-width="2.5" stroke-linecap="round"/></svg>
+    NAILA <span>Business Evolver</span>
+  </a>
+  <div class="nav-links">
+    <a href="https://benaila.com">Inicio</a>
+    <a href="https://benaila.com#servicios">Servicios</a>
+    <a href="https://benaila.com#contacto">Contacto</a>
+    <a href="/blog" class="active">Blog</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="blog-hero">
+  <p class="label">Recursos &amp; Artículos</p>
+  <h1>Chismes Sostenibles</h1>
+  <p>Reflexiones y guías prácticas sobre sostenibilidad, economía circular e internacionalización empresarial. Por Noelia Pericón.</p>
+</section>
+
+<!-- FILTERS -->
+<div class="filters">
+  <button class="filter-btn active" onclick="filterPosts('all', this)">Todos</button>
+  <button class="filter-btn" onclick="filterPosts('ec', this)">Economía Circular</button>
+  <button class="filter-btn" onclick="filterPosts('gs', this)">Gestión Sostenible</button>
+  <button class="filter-btn" onclick="filterPosts('int', this)">Internacionalización</button>
+</div>
+
+<!-- POSTS GRID -->
+<div class="blog-container">
+  <div class="blog-grid" id="blog-grid">
+
+    <article class="blog-card" data-cat="ec">
+      <span class="card-cat cat-ec">Economía Circular</span>
+      <h2>¿Cómo empezar con la Economía Circular en tu empresa?</h2>
+      <p>Una guía práctica para dar los primeros pasos hacia un modelo de negocio más circular sin necesidad de grandes inversiones.</p>
+      <div class="card-meta">
+        <span class="card-date">Junio 2025</span>
+        <a href="#" class="card-read">Leer más →</a>
+      </div>
+    </article>
+
+    <article class="blog-card" data-cat="gs">
+      <span class="card-cat cat-gs">Gestión Sostenible</span>
+      <h2>La Agenda 2030 y tu empresa: más cercana de lo que crees</h2>
+      <p>Los ODS no son solo para grandes corporaciones. Te mostramos cómo una pyme puede integrarlos en su estrategia diaria.</p>
+      <div class="card-meta">
+        <span class="card-date">Mayo 2025</span>
+        <a href="#" class="card-read">Leer más →</a>
+      </div>
+    </article>
+
+    <article class="blog-card" data-cat="int">
+      <span class="card-cat cat-int">Internacionalización</span>
+      <h2>Fondos europeos para empresas sostenibles: guía 2025</h2>
+      <p>Descubre qué programas de financiación de la UE están disponibles para empresas que quieren internacionalizarse de forma sostenible.</p>
+      <div class="card-meta">
+        <span class="card-date">Abril 2025</span>
+        <a href="#" class="card-read">Leer más →</a>
+      </div>
+    </article>
+
+    <article class="blog-card" data-cat="gs">
+      <span class="card-cat cat-gs">Gestión Sostenible</span>
+      <h2>Memorias de sostenibilidad: qué son y por qué tu empresa las necesita</h2>
+      <p>Cada vez más clientes, inversores y administraciones exigen transparencia. La memoria sostenible es tu carta de presentación.</p>
+      <div class="card-meta">
+        <span class="card-date">Marzo 2025</span>
+        <a href="#" class="card-read">Leer más →</a>
+      </div>
+    </article>
+
+    <article class="blog-card" data-cat="ec">
+      <span class="card-cat cat-ec">Economía Circular</span>
+      <h2>Residuos como recursos: casos de éxito en España</h2>
+      <p>Empresas españolas que han transformado sus residuos en materia prima, reduciendo costos y mejorando su posición competitiva.</p>
+      <div class="card-meta">
+        <span class="card-date">Febrero 2025</span>
+        <a href="#" class="card-read">Leer más →</a>
+      </div>
+    </article>
+
+    <article class="blog-card" data-cat="int">
+      <span class="card-cat cat-int">Internacionalización</span>
+      <h2>Dinamarca como puerta de entrada al mercado nórdico</h2>
+      <p>Por qué Dinamarca es el destino ideal para empresas sostenibles que quieren expandirse al mercado escandinavo.</p>
+      <div class="card-meta">
+        <span class="card-date">Enero 2025</span>
+        <a href="#" class="card-read">Leer más →</a>
+      </div>
+    </article>
+
+  </div>
+
+  <!-- NEWSLETTER -->
+  <div class="newsletter">
+    <h3>✉️ Recibe los Chismes Sostenibles</h3>
+    <p>Artículos prácticos sobre sostenibilidad, economía circular e internacionalización — directo a tu bandeja de entrada.</p>
+    <form class="newsletter-form" onsubmit="handleSubscribe(event)">
+      <input type="email" placeholder="Tu correo electrónico" required />
+      <button type="submit" class="btn-verde">Suscribirme</button>
+    </form>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <p>© 2025 NAILA Business Evolver · Las Palmas de Gran Canaria · <a href="mailto:contact@benaila.com">contact@benaila.com</a> · <a href="https://benaila.com">Volver al inicio</a></p>
+</footer>
+
+<script>
+  function filterPosts(cat, btn) {
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    document.querySelectorAll('#blog-grid .blog-card').forEach(card => {
+      if (cat === 'all' || card.dataset.cat === cat) {
+        card.style.display = '';
+      } else {
+        card.style.display = 'none';
+      }
+    });
+    const visible = document.querySelectorAll('#blog-grid .blog-card:not([style*="none"])');
+    const empty = document.querySelector('.empty');
+    if (empty) empty.remove();
+    if (visible.length === 0) {
+      const div = document.createElement('div');
+      div.className = 'empty';
+      div.textContent = 'Próximamente más artículos en esta categoría.';
+      document.getElementById('blog-grid').appendChild(div);
+    }
+  }
+
+  function handleSubscribe(e) {
+    e.preventDefault();
+    const input = e.target.querySelector('input');
+    alert('¡Gracias! Te avisaremos con cada nuevo artículo en ' + input.value);
+    input.value = '';
+  }
+</script>
+
+</body>
+</html>
