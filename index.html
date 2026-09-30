@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>NAILA Business Evolver · <em>e</em>MPRINT</title>
+  <title>NAILA Business Evolver · eMPRINT</title>
   <meta name="description" content="Asesoramiento, capacitación y diagnóstico para empresas. Economía Circular, Gestión Sostenible e Internacionalización. Conviértete en una eMPRINT." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -432,12 +432,12 @@
   ───────────────────────────────────────── */
   .how { background: var(--arena); padding: 6rem 2rem; }
   .how-steps {
-    display: grid; grid-template-columns: repeat(4,1fr);
+    display: grid; grid-template-columns: repeat(5,1fr);
     gap: 0; margin-top: 3.5rem; position: relative;
   }
   .how-steps::before {
     content: '';
-    position: absolute; top: 26px; left: calc(12.5% + 26px); right: calc(12.5% + 26px);
+    position: absolute; top: 26px; left: calc(10% + 26px); right: calc(10% + 26px);
     height: 2px; background: linear-gradient(to right, var(--verde) 0%, var(--verde2) 100%);
     z-index: 0;
   }
@@ -450,6 +450,13 @@
     margin: 0 auto 1.2rem; position: relative; z-index: 1;
     box-shadow: 0 0 0 6px var(--arena);
   }
+  @keyframes howPulse {
+    0%,100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(45,139,85,.45); }
+    50% { transform: scale(1.08); box-shadow: 0 0 0 10px rgba(45,139,85,0); }
+  }
+  .how-num--cta { animation: howPulse 1.8s ease-in-out infinite; cursor: pointer; }
+  .how-num--cta:hover { transform: scale(1.15) !important; }
+
   .how-step h4 { font-size: .95rem; font-weight: 800; margin-bottom: .4rem; }
   .how-step p { font-size: .83rem; color: var(--gris); line-height: 1.6; }
 
@@ -1250,8 +1257,8 @@
         <div class="benefit-icon" style="background: rgba(26,107,60,.15);">🤝</div>
         <div>
           <span class="benefit-tag" data-i18n="ben.c6.tag">Sesiones individuales</span>
-          <h3 data-i18n="ben.c6.h3">Coaching ejecutivo &amp; consultoría a medida</h3>
-          <p data-i18n="ben.c6.p">Con sesiones personalizadas 1 a 1 te guiamos hacia la sostenibilidad y ayudamos a tu empresa a alcanzar su máximo potencial. Noelia trabaja directamente contigo para diseñar una hoja de ruta real, alineada con tus objetivos y recursos.</p>
+          <h3 data-i18n="ben.c6.h3">Coaching ejecutivo &amp; asesoramiento a medida</h3>
+          <p data-i18n="ben.c6.p">Con sesiones personalizadas 1 a 1 te guiamos hacia la sostenibilidad y ayudamos a tu empresa a alcanzar su máximo potencial. Noelia trabaja directamente contigo para diseñar tu Roundmap real, alineado con tus objetivos y recursos.</p>
         </div>
       </div>
 
@@ -1289,6 +1296,13 @@
         <div class="how-num">4</div>
         <h4 data-i18n="meth.s4.h4">Documentación útil</h4>
         <p data-i18n="meth.s4.p">Tu documentación interna genera valor y reconocimiento. El coste se convierte en inversión.</p>
+      </div>
+      <div class="how-step reveal" style="transition-delay:.4s">
+        <a href="https://www.businessevolver.eu" target="_blank" style="text-decoration:none;display:block;">
+          <div class="how-num how-num--cta" style="background:var(--verde2);">5</div>
+        </a>
+        <h4 data-i18n="meth.s5.h4">Escoge tu servicio</h4>
+        <p data-i18n="meth.s5.p">Da el siguiente paso y elige el servicio que mejor se adapte a tu empresa.</p>
       </div>
     </div>
   </div>
@@ -1636,7 +1650,7 @@
 <section class="contact" id="contacto">
   <div class="container">
     <div class="reveal" style="text-align:center; margin-bottom:0;">
-      <p class="section-label" data-i18n="con.label">¿Hablamos?</p>
+      <p class="section-label" data-i18n="con.label" style="font-size:1.35rem;letter-spacing:.2em;">¿Hablamos?</p>
       <h2 class="section-title" data-i18n="con.title">Agenda tu consulta</h2>
       <p class="section-sub" style="margin:0 auto;" data-i18n="con.sub">Reserva una reunión directamente con nuestras asesoras. Confirmación por email inmediata.</p>
     </div>
@@ -1884,10 +1898,10 @@
     <div>
       <h5 data-i18n="foot.leg.h5">Legal</h5>
       <ul>
-        <li><a href="#" data-i18n="foot.leg.t1">Términos de venta</a></li>
-        <li><a href="#" data-i18n="foot.leg.t2">Devoluciones</a></li>
-        <li><a href="#" data-i18n="foot.leg.t3">Privacidad</a></li>
-        <li><a href="#" data-i18n="foot.leg.t4">Cookies</a></li>
+        <li><a href="terminos-condiciones.html" data-i18n="foot.leg.t1">Términos de venta</a></li>
+        <li><a href="terminos-condiciones.html#desistimiento" data-i18n="foot.leg.t2">Devoluciones</a></li>
+        <li><a href="politica-privacidad.html" data-i18n="foot.leg.t3">Privacidad</a></li>
+        <li><a href="politica-privacidad.html" data-i18n="foot.leg.t4">Cookies</a></li>
       </ul>
     </div>
     <div>
@@ -1906,9 +1920,9 @@
       <span>🛡️ SSL 256-bit</span>
     </div>
     <div style="display:flex; gap:1rem;">
-      <a href="#">Privacidad</a>
-      <a href="#">Cookies</a>
-      <a href="#">Términos</a>
+      <a href="politica-privacidad.html">Privacidad</a>
+      <a href="politica-privacidad.html">Cookies</a>
+      <a href="terminos-condiciones.html">Términos</a>
     </div>
   </div>
 </footer>
@@ -1944,12 +1958,12 @@ const T = {
     'ben.c3.tag':'Experta certificada','ben.c3.h3':'Experta certificada internacionalmente','ben.c3.p':'Certificada por <strong>GRI</strong> con más de 20 años de experiencia en gestión sostenible e internacionalización. Te acompañamos en todo el proceso.',
     'ben.c4.tag':'Flexible y conveniente','ben.c4.h3':'Adaptado a cada empresa','ben.c4.p':'Planes flexibles y convenientes que se adaptan a las necesidades diversas de cada empresa, ofreciendo un servicio excepcional tanto presencial como online.',
     'ben.c5.tag':'Tarifa accesible','ben.c5.h3':'Sin grandes inversiones iniciales','ben.c5.p':'Adaptamos soluciones y precios a los requisitos únicos de cada empresa, asegurando el máximo valor y satisfacción. Si no encuentras lo que buscas, contáctanos.',
-    'ben.c6.tag':'Sesiones individuales','ben.c6.h3':'Coaching ejecutivo &amp; consultoría a medida','ben.c6.p':'Con sesiones personalizadas 1 a 1 te guiamos hacia la sostenibilidad y ayudamos a tu empresa a alcanzar su máximo potencial. Noelia trabaja directamente contigo para diseñar una hoja de ruta real, alineada con tus objetivos y recursos.',
+    'ben.c6.tag':'Sesiones individuales','ben.c6.h3':'Coaching ejecutivo &amp; asesoramiento a medida','ben.c6.p':'Con sesiones personalizadas 1 a 1 te guiamos hacia la sostenibilidad y ayudamos a tu empresa a alcanzar su máximo potencial. Noelia trabaja directamente contigo para diseñar tu Roundmap real, alineado con tus objetivos y recursos.',
     'meth.label':'Nuestra metodología','meth.title':'Adaptada a tu tiempo y tus recursos','meth.sub':'Guaranteed success — nuestra metodología hace fácil identificar cómo ayudarte y alinear tu empresa con los estándares internacionales.',
     'meth.s1.h4':'Análisis integral','meth.s1.p':'Recopilamos y analizamos toda la información necesaria para la toma de decisiones.',
     'meth.s2.h4':'Diagnóstico','meth.s2.p':'Identificamos fortalezas, oportunidades de mejora y los ODS más relevantes para tu actividad y sector.',
     'meth.s3.h4':'Capacitación','meth.s3.p':'El éxito depende de los recursos. Involucramos a tu personal desde el inicio del proceso para garantizar el cambio.',
-    'meth.s4.h4':'Documentación útil','meth.s4.p':'Tu documentación interna genera valor y reconocimiento. El coste se convierte en inversión.',
+    'meth.s4.h4':'Documentación útil','meth.s4.p':'Tu documentación interna genera valor y reconocimiento. El coste se convierte en inversión.','meth.s5.h4':'Escoge tu servicio','meth.s5.p':'Da el siguiente paso y elige el servicio que mejor se adapte a tu empresa.','meth.s5.btn':'Ir al e-commerce →',
     'phi.label':'Nuestra filosofía · Business-3D','phi.sub':'"Si ganan las personas y gana el entorno, <strong>ganamos las empresas</strong>." La metodología Business-3D de NAILA genera valor simultáneo en los tres niveles que mueven el mundo.',
     'phi.w1.who':'1er WIN','phi.w1.h3':'Gana el Entorno','phi.w1.p':'Cada decisión empresarial tiene impacto. Con economía circular, gestión de residuos y cadenas de suministro sostenibles, tu empresa reduce su huella y genera valor ecosistémico real.',
     'phi.w2.who':'2º WIN','phi.w2.h3':'Ganan las Personas','phi.w2.p':'Empleados, comunidades y colaboradores son el motor del cambio. Cultura empresarial consciente, bienestar organizacional y cooperación internacional son parte de nuestro enfoque.',
@@ -1991,7 +2005,7 @@ const T = {
     'meth.s1.h4':'Comprehensive analysis','meth.s1.p':'We gather and analyse all the information needed to make informed decisions.',
     'meth.s2.h4':'Diagnosis','meth.s2.p':'We identify strengths, improvement opportunities and the most relevant SDGs for your activity and sector.',
     'meth.s3.h4':'Training','meth.s3.p':'Success depends on resources. We involve your staff from the start of the process to ensure lasting change.',
-    'meth.s4.h4':'Useful documentation','meth.s4.p':'Your internal documentation generates value and recognition. The cost becomes an investment.',
+    'meth.s4.h4':'Useful documentation','meth.s4.p':'Your internal documentation generates value and recognition. The cost becomes an investment.','meth.s5.h4':'Choose your service','meth.s5.p':'Take the next step and choose the service that best fits your company.','meth.s5.btn':'Go to e-commerce →',
     'phi.label':'Our philosophy · Business-3D','phi.sub':'"When people win and the environment wins, <strong>businesses win</strong>." NAILA\'s Business-3D methodology generates simultaneous value at the three levels that move the world.',
     'phi.w1.who':'1st WIN','phi.w1.h3':'The Environment Wins','phi.w1.p':'Every business decision has an impact. With circular economy, waste management and sustainable supply chains, your company reduces its footprint and generates real ecosystem value.',
     'phi.w2.who':'2nd WIN','phi.w2.h3':'People Win','phi.w2.p':'Employees, communities and collaborators are the engine of change. Conscious corporate culture, organisational wellbeing and international cooperation are part of our approach.',
@@ -2033,7 +2047,7 @@ const T = {
     'meth.s1.h4':'Grundig analyse','meth.s1.p':'Vi indsamler og analyserer al den information, der er nødvendig for at træffe informerede beslutninger.',
     'meth.s2.h4':'Diagnose','meth.s2.p':'Vi identificerer styrker, forbedringsmuligheder og de mest relevante SDG\'er for din aktivitet og sektor.',
     'meth.s3.h4':'Uddannelse','meth.s3.p':'Succes afhænger af ressourcer. Vi involverer dit personale fra starten af processen for at sikre varig forandring.',
-    'meth.s4.h4':'Nyttig dokumentation','meth.s4.p':'Din interne dokumentation skaber værdi og anerkendelse. Omkostningen bliver en investering.',
+    'meth.s4.h4':'Nyttig dokumentation','meth.s4.p':'Din interne dokumentation skaber værdi og anerkendelse. Omkostningen bliver en investering.','meth.s5.h4':'Vælg din ydelse','meth.s5.p':'Tag det næste skridt og vælg den ydelse, der passer bedst til din virksomhed.','meth.s5.btn':'Gå til e-handel →',
     'phi.label':'Vores filosofi · Business-3D','phi.sub':'"Når mennesker vinder og miljøet vinder, <strong>vinder virksomhederne</strong>." NAILAs Business-3D-metodologi skaber samtidig værdi på de tre niveauer, der bevæger verden.',
     'phi.w1.who':'1. WIN','phi.w1.h3':'Miljøet vinder','phi.w1.p':'Enhver virksomhedsbeslutning har en indvirkning. Med cirkulær økonomi, affaldsforvaltning og bæredygtige forsyningskæder reducerer din virksomhed sit fodaftryk og skaber reel økosystemværdi.',
     'phi.w2.who':'2. WIN','phi.w2.h3':'Mennesker vinder','phi.w2.p':'Medarbejdere, lokalsamfund og samarbejdspartnere er motoren for forandring. Bevidst virksomhedskultur, organisatorisk trivsel og internationalt samarbejde er en del af vores tilgang.',
