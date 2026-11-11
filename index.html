@@ -512,8 +512,8 @@
     mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
   }
   .marquee-track {
-    display: flex; gap: 3rem; align-items: center;
-    animation: marquee 40s linear infinite;
+    display: flex; gap: 4.5rem; align-items: center;
+    animation: marquee 60s linear infinite;
     width: max-content;
   }
   .marquee-track:hover { animation-play-state: paused; }
@@ -522,12 +522,13 @@
     to   { transform: translateX(-50%); }
   }
   .client-img {
-    height: 40px; width: auto; max-width: 130px;
+    height: 76px; width: auto; max-width: 210px;
     object-fit: contain; flex-shrink: 0;
-    filter: grayscale(1) opacity(.55);
+    filter: grayscale(1) opacity(.8);
     transition: filter .3s;
   }
   .client-img:hover { filter: grayscale(0) opacity(1); }
+  @media (max-width: 560px) { .client-img { height: 56px; max-width: 150px; } .marquee-track { gap: 3rem; } }
 
   /* ─────────────────────────────────────────
      CERTIFICATIONS
@@ -2334,6 +2335,12 @@ function applyLang(lang) {
   });
   document.querySelectorAll('[data-i18n-ph]').forEach(el => { const v = dict[el.dataset.i18nPh]; if (v !== undefined) el.placeholder = v; });
   document.documentElement.lang = lang;
+  syncShopLinks(lang);
+}
+function syncShopLinks(lang) {
+  document.querySelectorAll('a[href*="businessevolver.eu"]').forEach(a => {
+    try { const u = new URL(a.href); u.searchParams.set('lang', lang); a.href = u.toString(); } catch (e) {}
+  });
 }
 
 document.querySelectorAll('.nav-lang button').forEach(btn => {
@@ -2347,6 +2354,15 @@ document.querySelectorAll('.nav-lang button').forEach(btn => {
     applyLang(btn.dataset.lang || 'es');
   });
 });
+
+// Idioma que llega desde la tienda (?lang=en|da|es)
+(function () {
+  const p = new URLSearchParams(location.search).get('lang');
+  if (p && ['es','en','da'].indexOf(p) !== -1) {
+    const b = document.querySelector('.nav-lang button[data-lang="' + p + '"]');
+    if (b) b.click();
+  } else { syncShopLinks('es'); }
+})();
 
 // ── Smooth scroll ─────────────────────────────
 document.querySelectorAll('a[href^="#"]').forEach(a => {
